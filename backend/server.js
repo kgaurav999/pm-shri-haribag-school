@@ -24,6 +24,61 @@ app.use(express.urlencoded({ extended: true }));
 // --------------------------------------------------
 
 const uploadDir = path.join(__dirname, "uploads", "notices");
+// =========================================
+// TEACHER PHOTO UPLOAD CONFIGURATION
+// =========================================
+
+const teacherUploadDir = path.join(
+  __dirname,
+  "uploads",
+  "teachers"
+);
+
+if (!fs.existsSync(teacherUploadDir)) {
+  fs.mkdirSync(teacherUploadDir, {
+    recursive: true,
+  });
+}
+
+const teacherStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, teacherUploadDir);
+  },
+
+  filename: function (req, file, cb) {
+    const extension = path.extname(file.originalname).toLowerCase();
+
+    const safeName = `teacher-${Date.now()}${extension}`;
+
+    cb(null, safeName);
+  },
+});
+
+const teacherUpload = multer({
+  storage: teacherStorage,
+
+  limits: {
+    fileSize: 2 * 1024 * 1024,
+  },
+
+  fileFilter: function (req, file, cb) {
+    const allowedTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/webp",
+    ];
+
+    if (!allowedTypes.includes(file.mimetype)) {
+      return cb(
+        new Error(
+          "Only JPG, PNG and WEBP images are allowed."
+        )
+      );
+    }
+
+    cb(null, true);
+  },
+});
 
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
@@ -545,7 +600,7 @@ app.put("/api/events/:id", async (req, res) => {
 // DELETE EVENT
 
 app.delete("/api/events/:id", async (req, res) => {
-  try {
+  try {rs
     const result = await pool.query(
       `DELETE FROM events
              WHERE id = $1
@@ -626,7 +681,10 @@ app.get("/api/teachers", async (req, res) => {
 // ADD TEACHER API
 // =========================================
 
-app.post("/api/teachers", async (req, res) => {
+app.post(
+  "/api/teachers",
+  teacherUpload.single("photo"),
+  async (req, res) => {
   try {
     const {
       nameHi,
@@ -637,7 +695,7 @@ app.post("/api/teachers", async (req, res) => {
       subjectEn,
       displayOrder,
     } = req.body;
-
+    const photoFile = req.file ? `teachers/${req.file.filename}` : null;
     // Required fields
 
     if (!nameHi || !nameEn) {

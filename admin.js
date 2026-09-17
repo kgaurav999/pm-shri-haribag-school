@@ -1402,25 +1402,42 @@ document.addEventListener("DOMContentLoaded", function () {
   teacherForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    const teacherData = {
-      nameHi: document.getElementById("teacherNameHi").value.trim(),
+const teacherFormData = new FormData(teacherForm);
 
-      nameEn: document.getElementById("teacherNameEn").value.trim(),
+teacherFormData.set(
+  "nameHi",
+  document.getElementById("teacherNameHi").value.trim()
+);
 
-      designationHi: document
-        .getElementById("teacherDesignationHi")
-        .value.trim(),
+teacherFormData.set(
+  "nameEn",
+  document.getElementById("teacherNameEn").value.trim()
+);
 
-      designationEn: document
-        .getElementById("teacherDesignationEn")
-        .value.trim(),
+teacherFormData.set(
+  "designationHi",
+  document.getElementById("teacherDesignationHi").value.trim()
+);
 
-      subjectHi: document.getElementById("teacherSubjectHi").value.trim(),
+teacherFormData.set(
+  "designationEn",
+  document.getElementById("teacherDesignationEn").value.trim()
+);
 
-      subjectEn: document.getElementById("teacherSubjectEn").value.trim(),
+teacherFormData.set(
+  "subjectHi",
+  document.getElementById("teacherSubjectHi").value.trim()
+);
 
-      displayOrder: Number(document.getElementById("teacherOrder").value) || 0,
-    };
+teacherFormData.set(
+  "subjectEn",
+  document.getElementById("teacherSubjectEn").value.trim()
+);
+
+teacherFormData.set(
+  "displayOrder",
+  Number(document.getElementById("teacherOrder").value) || 0
+);
 
     try {
       const url = editingTeacherId
@@ -1432,11 +1449,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const response = await fetch(url, {
         method: method,
 
-        headers: {
-          "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify(teacherData),
+       body: teacherFormData,
       });
 
       const result = await response.json();

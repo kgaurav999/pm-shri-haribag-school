@@ -1,0 +1,155 @@
+/* =========================================
+   TEACHERS & STAFF - PUBLIC SECTION
+   ========================================= */
+
+.teachers-public-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 28px;
+}
+
+/* Teacher Card */
+.teacher-public-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  padding: 20px;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.teacher-public-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.10);
+  border-color: #cbd5e1;
+}
+
+/* Teacher Avatar */
+.teacher-public-avatar {
+  width: 64px;
+  height: 64px;
+
+  flex: 0 0 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #f1f5f9;
+
+  font-size: 30px;
+}
+
+/* Teacher Information */
+.teacher-public-info {
+  min-width: 0;
+}
+
+.teacher-public-info h3 {
+  margin: 0 0 6px;
+
+  font-size: 18px;
+  line-height: 1.35;
+
+  color: #1e293b;
+}
+
+.teacher-designation {
+  margin: 0 0 4px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #475569;
+}
+
+.teacher-subject {
+  margin: 0;
+
+  font-size: 13px;
+
+  color: #64748b;
+}
+
+/* Empty State */
+.teachers-empty,
+.teachers-loading,
+.teachers-error {
+  width: 100%;
+
+  padding: 28px 20px;
+
+  text-align: center;
+
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+
+  background: #f8fafc;
+
+  color: #64748b;
+}
+
+.teachers-empty p,
+.teachers-loading p,
+.teachers-error p {
+  margin: 0;
+}
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 900px) {
+  .teachers-public-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+  .teachers-public-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .teacher-public-card {
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .teacher-public-avatar {
+    width: 56px;
+    height: 56px;
+    flex-basis: 56px;
+    font-size: 26px;
+  }
+
+  .teacher-public-info h3 {
+    font-size: 16px;
+  }
+
+  .teacher-designation {
+    font-size: 13px;
+  }
+
+  .teacher-subject {
+    font-size: 12px;
+  }
+}
