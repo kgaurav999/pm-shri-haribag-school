@@ -1,0 +1,1804 @@
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,"Noto Sans Devanagari",sans-serif;color:#15314b;background:#f5f8fb}a{text-decoration:none;color:inherit}.container{width:min(1400px,94%);margin:auto}.topbar{background:#0c4778;color:#fff;font-size:14px}.topbar-inner{min-height:42px;display:flex;align-items:center;gap:28px}.topbar .lang-switch{margin-left:auto;display:flex;border:1px solid #fff;border-radius:7px;overflow:hidden}.lang-switch button{border:0;background:transparent;color:#fff;padding:6px 15px;cursor:pointer}.lang-switch button.active{background:#f26722}.brand{background:#fff}.brand-inner{min-height:135px;display:flex;align-items:center;gap:25px;text-align:center}.brand h1{font-size:clamp(27px,3.1vw,48px);margin:0;color:#123b65;letter-spacing:.5px}.brand p{font-size:20px;margin:8px 0;color:#a55a19;font-weight:bold}.address{font-size:19px}.logo-mark{width:105px;height:105px;border-radius:50%;display:grid;place-content:center;background:#f4f5f6;color:#e34d21;font-weight:800;font-size:24px;line-height:.85;border:3px solid #e34d21;flex:none}.logo-mark small{font-size:17px}.motto{margin-left:auto;min-width:250px}.motto strong{display:block;font-size:19px}.motto span{display:block;margin-top:8px;font-size:14px}.navbar{background:#0c4778;color:#fff}.nav-inner{position:relative}.nav-links{display:flex;overflow-x:auto}.nav-links a{padding:14px 13px;text-align:center;white-space:nowrap;font-weight:bold;border-right:1px solid rgba(255,255,255,.12);font-size:14px}.nav-links a.active,.nav-links a:hover{background:#ef5d25}.menu-toggle{display:none;background:none;color:#fff;border:0;font-size:28px;padding:10px}.hero-placeholder{height:360px;background:linear-gradient(120deg,#214e70,#86a98a 50%,#d5c69a);position:relative}.hero-placeholder:before{content:"SCHOOL BUILDING PHOTO";position:absolute;inset:0;display:grid;place-items:center;color:rgba(255,255,255,.28);font-size:42px;font-weight:800}.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.65),rgba(0,0,0,.05))}.hero-content{padding-top:85px;color:#fff}.hero h2{font-size:clamp(34px,4vw,55px);max-width:650px;margin:0 0 8px}.hero p{font-size:22px;margin:0 0 22px}.btn{display:inline-block;background:#0874ca;color:#fff;border-radius:28px;padding:12px 24px;font-weight:bold;border:1px solid rgba(255,255,255,.4)}.quick-info{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:15px}.quick-info article{background:#fff;border-radius:9px;padding:15px;display:flex;gap:12px;min-height:95px;box-shadow:0 2px 8px #0000000b}.quick-info b{width:45px;height:45px;border-radius:50%;display:grid;place-items:center;background:#e8f3ff;font-size:22px;flex:none}.quick-info span{display:flex;flex-direction:column;gap:3px}.quick-info small{font-size:12px;color:#657789}.quick-info strong{font-size:15px}.content-grid{display:grid;grid-template-columns:1.1fr 1.5fr .9fr;gap:16px;margin-top:18px}.card,.section{background:#fff;border-radius:9px;box-shadow:0 2px 10px #0000000b}.card{padding:18px}.card-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e3eaf0;padding-bottom:10px}.card h2,.section-title h2{margin:0;color:#0c4778;font-size:22px}.card-head a{font-size:13px;color:#1474bd}.about p{line-height:1.75}.features{padding-left:22px;line-height:2}.features li::marker{color:#24a13b}.section{margin-top:20px;padding:20px}.section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.section-title>span{font-size:12px;color:#6d7c88}.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.gallery-placeholder{height:190px;border-radius:8px;background:linear-gradient(135deg,#dbe8f2,#f1f5f8);display:grid;place-items:center;color:#728493;font-weight:bold}.principal{display:flex;align-items:center;gap:15px}.avatar{width:75px;height:75px;border-radius:50%;background:#7341b6;color:#fff;display:grid;place-items:center;font-size:22px;font-weight:bold}.principal h3{margin:0}.principal p{margin:5px 0;color:#6d7c88}.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.tiles div{padding:25px;background:#eef6ff;border-radius:8px;font-weight:bold;text-align:center}footer{margin-top:25px;background:#0a416d;color:#fff}.footer-grid{display:grid;grid-template-columns:2fr 1fr;gap:30px;padding:35px 0}.footer-grid h3{margin-top:0}.copyright{text-align:center;border-top:1px solid #ffffff33;padding:15px;font-size:13px}@media(max-width:1100px){.motto{display:none}.quick-info{grid-template-columns:repeat(3,1fr)}.content-grid{grid-template-columns:1fr 1fr}.content-grid .card:last-child{grid-column:1/-1}}@media(max-width:700px){.container{width:92%}.topbar-inner{justify-content:center;flex-wrap:wrap;padding:7px 0;gap:7px 15px}.topbar-inner>span:nth-child(2){display:none}.topbar .lang-switch{margin-left:0}.brand-inner{min-height:120px;justify-content:flex-start;text-align:left}.logo-mark{width:65px;height:65px;font-size:16px}.logo-mark small{font-size:12px}.brand h1{font-size:22px}.brand p{font-size:14px}.address{font-size:12px}.menu-toggle{display:block}.nav-links{display:none;flex-direction:column;overflow:visible}.nav-links.open{display:flex}.nav-links a{text-align:left;padding:12px 15px}.hero-placeholder{height:300px}.hero-content{padding-top:70px}.hero h2{font-size:32px}.hero p{font-size:17px}.quick-info{grid-template-columns:1fr 1fr}.content-grid{grid-template-columns:1fr}.content-grid .card:last-child{grid-column:auto}.gallery-grid{grid-template-columns:1fr}.gallery-placeholder{height:180px}.tiles{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.section-title{gap:10px;align-items:flex-start;flex-direction:column}}@media(max-width:430px){.quick-info{grid-template-columns:1fr}.brand-inner{gap:12px}.brand h1{font-size:18px}.address{font-size:11px}.hero h2{font-size:27px}.hero-placeholder:before{font-size:24px}}
+
+.notice{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #e5edf3}.notice:last-child{border-bottom:0}.notice strong{min-width:75px;font-size:12px;color:#0c4778;background:#eef5fa;padding:8px;border-radius:5px;text-align:center}.notice span{font-size:14px;line-height:1.4}
+.school-logo {
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+}
+@media (max-width: 700px) {
+    .school-logo {
+        width: 65px;
+        height: 65px;
+    }
+}
+
+/* ==============================
+   PRINCIPAL'S MESSAGE
+   ============================== */
+
+.principal-message {
+    margin-top: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 35px;
+    align-items: center;
+    box-shadow: 0 2px 10px #0000000b;
+}
+
+.principal-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-placeholder {
+    width: 240px;
+    height: 280px;
+    border: 2px dashed #b9c9d8;
+    border-radius: 10px;
+    background: #f3f7fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #547086;
+}
+
+.photo-placeholder span {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.photo-placeholder p {
+    margin: 0;
+    font-size: 17px;
+    font-weight: bold;
+    color: #0c4778;
+}
+
+.photo-placeholder small {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #7a8b99;
+}
+
+.principal-content {
+    min-width: 0;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #e2eaf0;
+    padding-bottom: 15px;
+    margin-bottom: 18px;
+}
+
+.heading-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #eef6ff;
+    display: grid;
+    place-items: center;
+    font-size: 25px;
+    flex-shrink: 0;
+}
+
+.section-heading h2 {
+    margin: 0;
+    color: #0c4778;
+    font-size: 25px;
+}
+
+.section-heading p {
+    margin: 5px 0 0;
+    color: #71818d;
+    font-size: 13px;
+}
+
+.message-text {
+    color: #405563;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.message-text p {
+    margin: 0 0 13px;
+}
+
+.closing-message {
+    color: #0c4778;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.principal-signature {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e2eaf0;
+    display: flex;
+    flex-direction: column;
+}
+
+.principal-signature strong {
+    color: #15314b;
+    font-size: 16px;
+}
+
+.principal-signature span {
+    color: #71818d;
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+
+/* ==============================
+   MOBILE RESPONSIVE
+   ============================== */
+
+@media (max-width: 700px) {
+
+    .principal-message {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .principal-photo {
+        order: 1;
+    }
+
+    .principal-content {
+        order: 2;
+    }
+
+    .photo-placeholder {
+        width: 180px;
+        height: 210px;
+    }
+
+    .photo-placeholder span {
+        font-size: 38px;
+    }
+
+    .section-heading h2 {
+        font-size: 20px;
+    }
+
+    .message-text {
+        font-size: 14px;
+        line-height: 1.75;
+    }
+
+    .closing-message {
+        font-size: 15px;
+    }
+}
+
+
+
+/* =========================================
+   DYNAMIC NOTICE LIST
+   ========================================= */
+
+.notice-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid #e7edf2;
+}
+
+.notice-item:last-child {
+    border-bottom: none;
+}
+
+
+/* Date */
+
+.notice-date {
+    min-width: 82px;
+
+    padding: 7px 8px;
+
+    background: #eef6fb;
+    border-radius: 6px;
+
+    color: #0c4778;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+/* Notice content */
+
+.notice-content {
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+
+/* Notice title */
+
+.notice-title {
+    color: #294e67;
+
+    font-size: 14px;
+    line-height: 1.6;
+
+    font-weight: 500;
+}
+
+
+/* Important badge */
+
+.notice-badge {
+    display: inline-block;
+
+    padding: 3px 8px;
+
+    border-radius: 20px;
+
+    background: #fff3d6;
+
+    color: #9a6800;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+/* Empty state */
+
+.notice-empty {
+    padding: 30px 10px;
+
+    text-align: center;
+
+    color: #71818d;
+}
+
+
+/* Error */
+
+.notice-error {
+    padding: 20px;
+
+    text-align: center;
+
+    background: #fff6f6;
+
+    border-radius: 8px;
+
+    color: #b04a4a;
+}
+
+.notice-error p {
+    margin: 0 0 5px;
+}
+
+.notice-error small {
+    color: #8a7777;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .notice-item {
+        gap: 10px;
+    }
+
+    .notice-date {
+        min-width: 70px;
+
+        font-size: 10px;
+
+        padding: 6px 5px;
+    }
+
+    .notice-title {
+        font-size: 13px;
+    }
+
+    .notice-badge {
+        font-size: 9px;
+    }
+}
+
+
+
+/* Notice Loading */
+
+.notice-loading {
+    padding: 25px 10px;
+    text-align: center;
+    color: #71818d;
+    font-size: 14px;
+}
+
+
+/* Notice Error */
+
+.notice-error {
+    padding: 20px;
+    text-align: center;
+    background: #fff6f6;
+    border-radius: 8px;
+    color: #b04a4a;
+}
+
+.notice-error strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.notice-error small {
+    color: #8a7777;
+}
+
+
+/* Empty Notices */
+
+.notice-empty {
+    padding: 25px 10px;
+    text-align: center;
+    color: #71818d;
+}
+
+
+/* =========================================
+   SEAMLESS VERTICAL NOTICE TICKER
+   ========================================= */
+
+.notice-ticker {
+    height: 260px;
+    overflow: hidden;
+    position: relative;
+}
+
+
+/* Moving track */
+
+.notice-ticker-track {
+    display: flex;
+    flex-direction: column;
+
+    animation: noticeScroll 18s linear infinite;
+
+    will-change: transform;
+}
+
+
+/* Individual notice */
+
+.notice-ticker .notice-item {
+    flex-shrink: 0;
+
+    width: 100%;
+    min-height: 78px;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding: 14px 0;
+
+    border-bottom: 1px solid #e7edf2;
+}
+
+
+/* Pause on mouse hover */
+
+.notice-ticker:hover .notice-ticker-track {
+    animation-play-state: paused;
+}
+
+
+/* Date */
+
+.notice-ticker .notice-date {
+    min-width: 75px;
+
+    padding: 6px 7px;
+
+    background: #eef6fb;
+
+    border-radius: 5px;
+
+    color: #0c4778;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+/* Notice content */
+
+.notice-ticker .notice-content {
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 6px;
+}
+
+
+/* Notice title */
+
+.notice-ticker .notice-title {
+    color: #294e67;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+
+    font-weight: 500;
+}
+
+
+/* Important badge */
+
+.notice-ticker .notice-badge {
+    display: inline-block;
+
+    padding: 3px 8px;
+
+    background: #fff3d6;
+
+    color: #9a6800;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   SEAMLESS ANIMATION
+   ========================================= */
+
+@keyframes noticeScroll {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-50%);
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .notice-ticker {
+        height: 240px;
+    }
+
+    .notice-ticker .notice-item {
+        min-height: 75px;
+
+        padding: 12px 0;
+
+        gap: 9px;
+    }
+
+    .notice-ticker .notice-date {
+        min-width: 65px;
+
+        font-size: 10px;
+    }
+
+    .notice-ticker .notice-title {
+        font-size: 13px;
+    }
+
+}
+
+
+
+
+/* =========================================
+   EVENTS SECTION
+   ========================================= */
+
+.events-section {
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+
+
+/* =========================================
+   EVENTS HEADER
+   ========================================= */
+
+.events-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    margin-bottom: 22px;
+    padding-bottom: 15px;
+
+    border-bottom: 1px solid #e2eaf0;
+}
+
+
+.section-label {
+    display: inline-block;
+
+    margin-bottom: 6px;
+
+    color: #c28a12;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+
+.events-header h2 {
+    margin: 0;
+
+    color: #123f60;
+
+    font-size: 25px;
+    font-weight: 700;
+}
+
+
+.events-header p {
+    margin: 6px 0 0;
+
+    color: #71818d;
+
+    font-size: 13px;
+}
+
+
+/* View all button */
+
+.view-all-events {
+    display: inline-block;
+
+    padding: 9px 15px;
+
+    border: 1px solid #d7e3eb;
+    border-radius: 6px;
+
+    color: #0c4778;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    background: #ffffff;
+
+    transition: all 0.2s ease;
+}
+
+
+.view-all-events:hover {
+    background: #0c4778;
+
+    color: #ffffff;
+
+    border-color: #0c4778;
+}
+
+
+/* =========================================
+   EVENTS GRID
+   ========================================= */
+
+.events-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+/* =========================================
+   EVENT CARD
+   ========================================= */
+
+.event-card {
+    display: flex;
+
+    min-height: 155px;
+
+    background: #ffffff;
+
+    border: 1px solid #e1e8ed;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 3px 12px rgba(20, 55, 80, 0.06);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.event-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(20, 55, 80, 0.10);
+}
+
+
+/* =========================================
+   EVENT DATE
+   ========================================= */
+
+.event-date {
+    width: 82px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #f2f7fa;
+
+    border-right: 1px solid #e1e8ed;
+
+    text-align: center;
+}
+
+
+.event-date strong {
+    color: #0c4778;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    font-weight: 700;
+}
+
+
+.event-date span {
+    margin-top: 7px;
+
+    color: #c28a12;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+.event-date small {
+    margin-top: 3px;
+
+    color: #7a8994;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   EVENT INFORMATION
+   ========================================= */
+
+.event-info {
+    padding: 18px 17px;
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.event-category {
+    display: inline-block;
+
+    margin-bottom: 8px;
+
+    color: #71818d;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+}
+
+
+.event-info h3 {
+    margin: 0 0 8px;
+
+    color: #173f5b;
+
+    font-size: 17px;
+
+    line-height: 1.35;
+}
+
+
+.event-info p {
+    margin: 0;
+
+    color: #607582;
+
+    font-size: 13px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .events-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .events-header h2 {
+        font-size: 22px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .events-section {
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+
+
+    .events-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+
+    .events-header h2 {
+        font-size: 20px;
+    }
+
+
+    .events-header p {
+        font-size: 12px;
+    }
+
+
+    .view-all-events {
+        font-size: 12px;
+
+        padding: 8px 12px;
+    }
+
+
+
+
+
+
+
+    .event-date strong {
+        font-size: 26px;
+    }
+
+
+
+    .event-info h3 {
+        font-size: 16px;
+    }
+
+
+    .event-info p {
+        font-size: 12.5px;
+    }
+
+}
+
+
+/* =========================================
+   EVENTS HORIZONTAL CONTINUOUS TICKER
+   ========================================= */
+
+.events-grid {
+    width: 100%;
+    overflow: hidden;
+}
+
+
+/* Ticker Window */
+
+.events-ticker {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+
+/* Moving Track */
+
+.events-track {
+    display: flex;
+    width: max-content;
+    animation: eventsMoveRight 24s linear infinite;
+    will-change: transform;
+}
+
+
+/* Each identical group */
+
+.events-group {
+    display: flex;
+    gap: 20px;
+    flex-shrink: 0;
+    padding-right: 20px;
+}
+
+
+/* Event Card */
+
+.event-card {
+    width: 410px;
+    min-height: 155px;
+    flex-shrink: 0;
+
+    display: flex;
+
+    background: #ffffff;
+
+    border: 1px solid #e1e8ed;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 3px 12px rgba(20, 55, 80, 0.06);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* Hover */
+
+.event-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(20, 55, 80, 0.10);
+}
+
+
+/* Date */
+
+.event-date {
+    width: 82px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #f2f7fa;
+
+    border-right:
+        1px solid #e1e8ed;
+
+    text-align: center;
+}
+
+
+.event-date strong {
+    color: #0c4778;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    font-weight: 700;
+}
+
+
+.event-date span {
+    margin-top: 7px;
+
+    color: #c28a12;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+.event-date small {
+    margin-top: 3px;
+
+    color: #7a8994;
+
+    font-size: 11px;
+}
+
+
+/* Event Information */
+
+.event-info {
+    padding: 18px 17px;
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.event-category {
+    display: inline-block;
+
+    margin-bottom: 8px;
+
+    color: #71818d;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+}
+
+
+.event-info h3 {
+    margin: 0 0 8px;
+
+    color: #173f5b;
+
+    font-size: 17px;
+
+    line-height: 1.35;
+}
+
+
+.event-info p {
+    margin: 0;
+
+    color: #607582;
+
+    font-size: 13px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================
+   LEFT → RIGHT CONTINUOUS MOVEMENT
+   ========================================= */
+
+@keyframes eventsMoveRight {
+
+    from {
+        transform: translateX(-50%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+
+}
+
+
+/* Pause when mouse is over events */
+
+.events-ticker:hover .events-track {
+    animation-play-state: paused;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .events-track {
+        animation-duration: 20s;
+    }
+
+    .events-group {
+        gap: 14px;
+        padding-right: 14px;
+    }
+
+    .event-card {
+        width: 310px;
+        min-height: 135px;
+    }
+
+    .event-date {
+        width: 72px;
+    }
+
+    .event-date strong {
+        font-size: 26px;
+    }
+
+    .event-info {
+        padding: 15px;
+    }
+
+    .event-info h3 {
+        font-size: 16px;
+    }
+
+    .event-info p {
+        font-size: 12.5px;
+    }
+
+}
+
+
+/* =========================================
+   FINAL EVENTS FULL WIDTH TICKER FIX
+   ========================================= */
+
+.events-section {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.events-grid {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    overflow: hidden;
+}
+
+.events-ticker {
+    display: block;
+    width: 100%;
+    max-width: none;
+    overflow: hidden;
+}
+
+.events-track {
+    display: flex;
+    width: max-content;
+    max-width: none;
+    flex-wrap: nowrap;
+    animation: eventsMoveRight 24s linear infinite;
+}
+
+.events-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: max-content;
+    flex-shrink: 0;
+    gap: 20px;
+    padding-right: 20px;
+}
+
+.event-card {
+    display: flex;
+    width: 410px;
+    min-width: 410px;
+    max-width: 410px;
+    flex-shrink: 0;
+}
+
+
+/* LEFT → RIGHT */
+
+@keyframes eventsMoveRight {
+
+    from {
+        transform: translateX(-50%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .events-grid {
+        width: 100% !important;
+    }
+
+    .events-track {
+        animation-duration: 20s;
+    }
+
+    .events-group {
+        gap: 14px;
+        padding-right: 14px;
+    }
+
+    .event-card {
+        width: 310px;
+        min-width: 310px;
+        max-width: 310px;
+    }
+
+}
+
+
+
+
+/* ================================
+   PUBLIC NOTICE SECTION
+================================ */
+
+#notices {
+    overflow: hidden;
+}
+
+.notice-ticker {
+    height: 270px;
+    overflow: hidden;
+    position: relative;
+    padding-right: 4px;
+}
+
+.notice-ticker-track {
+    display: flex;
+    flex-direction: column;
+    animation: noticeScroll 22s linear infinite;
+    will-change: transform;
+}
+
+.notice-ticker:hover .notice-ticker-track {
+    animation-play-state: paused;
+}
+
+/* Individual Notice */
+.notice-ticker .notice-item {
+    flex-shrink: 0;
+    width: 100%;
+    min-height: 105px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+
+    padding: 14px 0;
+    border-bottom: 1px solid #e6ebf0;
+}
+
+/* Date Box */
+.notice-ticker .notice-date {
+    flex: 0 0 58px;
+    text-align: center;
+
+    background: #f1f5f9;
+    border: 1px solid #dbe3ea;
+    border-radius: 6px;
+
+    padding: 7px 4px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+/* Notice Content */
+.notice-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.notice-title {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.45;
+    color: #1f2937;
+    margin-bottom: 4px;
+}
+
+.notice-description {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #64748b;
+    margin-bottom: 8px;
+}
+
+/* Important Badge */
+.notice-important {
+    display: inline-block;
+
+    margin-top: 2px;
+    padding: 3px 8px;
+
+    border-radius: 4px;
+
+    background: #fff1f2;
+    border: 1px solid #fecdd3;
+
+    color: #be123c;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* ================================
+   NOTICE ACTION BUTTONS
+================================ */
+
+.notice-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 8px;
+}
+
+.notice-actions a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 30px;
+    padding: 5px 10px;
+
+    border-radius: 5px;
+
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+/* View PDF */
+.view-pdf-btn {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #1d4ed8;
+}
+
+.view-pdf-btn:hover {
+    background: #dbeafe;
+}
+
+/* Download */
+.download-pdf-btn {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #15803d;
+}
+
+.download-pdf-btn:hover {
+    background: #dcfce7;
+}
+
+/* External Link */
+.open-link-btn {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+}
+
+.open-link-btn:hover {
+    background: #e2e8f0;
+}
+
+/* ================================
+   NOTICE SCROLL
+================================ */
+
+@keyframes noticeScroll {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-50%);
+    }
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 700px) {
+
+    .notice-ticker {
+        height: 300px;
+    }
+
+    .notice-ticker .notice-item {
+        min-height: 115px;
+        gap: 10px;
+        padding: 13px 0;
+    }
+
+    .notice-ticker .notice-date {
+        flex: 0 0 50px;
+        font-size: 11px;
+    }
+
+    .notice-title {
+        font-size: 14px;
+    }
+
+    .notice-description {
+        font-size: 12px;
+    }
+
+    .notice-actions {
+        gap: 5px;
+    }
+
+    .notice-actions a {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+}
+
+
+/* =========================================
+   NOTICE & EVENTS TICKER PAUSE
+========================================= */
+
+/* NOTICE */
+.notice-ticker:hover .notice-ticker-track {
+    animation-play-state: paused;
+}
+
+/* EVENTS */
+.events-ticker:hover .events-track {
+    animation-play-state: paused;
+}
+
+
+/* Mobile touch ko smooth rakhe */
+.notice-ticker,
+.events-ticker {
+    touch-action: pan-y;
+}
+
+
+
+
+/* =========================================
+   FINAL EVENTS SECTION
+   Clean container + proper alignment
+========================================= */
+
+.events-section {
+    width: calc(100% - 80px);
+    max-width: 1270px;
+    margin: 34px auto;
+    box-sizing: border-box;
+}
+
+
+/* -----------------------------------------
+   EVENTS HEADER
+----------------------------------------- */
+
+.events-header {
+    width: 100%;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    padding: 0 0 18px;
+    margin-bottom: 0;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.events-header h2 {
+    margin: 5px 0 4px;
+    line-height: 1.25;
+}
+
+.events-header p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.events-header .section-label {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.view-all-events {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+
+/* -----------------------------------------
+   EVENTS TICKER
+----------------------------------------- */
+
+.events-grid {
+    width: 100% !important;
+    max-width: none !important;
+
+    margin: 0 !important;
+    padding: 22px 0 0 !important;
+
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+
+/* -----------------------------------------
+   TICKER TRACK
+----------------------------------------- */
+
+.events-ticker {
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.events-track {
+    display: flex;
+
+    width: max-content;
+    max-width: none;
+
+    flex-wrap: nowrap;
+
+    gap: 0;
+
+    animation: eventsMoveRight 24s linear infinite;
+
+    will-change: transform;
+}
+
+.events-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    width: max-content;
+
+    gap: 20px;
+
+    padding-right: 20px;
+
+    flex-shrink: 0;
+}
+
+
+/* -----------------------------------------
+   EVENT CARD
+----------------------------------------- */
+
+.event-card {
+    display: flex;
+    align-items: stretch;
+
+    width: 410px;
+    min-width: 410px;
+    max-width: 410px;
+
+    min-height: 154px;
+
+    flex-shrink: 0;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #dfe7ee;
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 16px rgba(15, 23, 42, 0.08);
+}
+
+
+/* -----------------------------------------
+   EVENT DATE
+----------------------------------------- */
+
+.event-card .event-date {
+    width: 84px;
+    min-width: 84px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background: #f1f6f9;
+
+    border-right: 1px solid #e2e8f0;
+
+    box-sizing: border-box;
+}
+
+.event-card .event-date strong {
+    display: block;
+
+    font-size: 30px;
+    line-height: 1;
+
+    font-weight: 700;
+
+    margin-bottom: 5px;
+}
+
+.event-card .event-date span {
+    display: block;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+
+    margin-bottom: 3px;
+}
+
+.event-card .event-date small {
+    font-size: 11px;
+}
+
+
+/* -----------------------------------------
+   EVENT INFORMATION
+----------------------------------------- */
+
+.event-card .event-info {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 20px 18px;
+
+    box-sizing: border-box;
+}
+
+.event-card .event-category {
+    display: block;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+
+    margin-bottom: 7px;
+}
+
+.event-card h3 {
+    margin: 0 0 8px;
+
+    font-size: 17px;
+    line-height: 1.35;
+}
+
+.event-card p {
+    margin: 0;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* -----------------------------------------
+   ANIMATION
+----------------------------------------- */
+
+@keyframes eventsMoveRight {
+
+    from {
+        transform: translateX(-50%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+
+}
+
+
+/* -----------------------------------------
+   DESKTOP HOVER PAUSE
+----------------------------------------- */
+
+@media (hover: hover) {
+
+    .events-ticker:hover .events-track {
+        animation-play-state: paused;
+    }
+
+}
+
+
+/* -----------------------------------------
+   TABLET
+----------------------------------------- */
+
+@media (max-width: 900px) {
+
+    .events-section {
+        width: calc(100% - 40px);
+    }
+
+    .event-card {
+        width: 360px;
+        min-width: 360px;
+        max-width: 360px;
+    }
+
+}
+
+
+/* -----------------------------------------
+   MOBILE
+----------------------------------------- */
+
+@media (max-width: 700px) {
+
+    .events-section {
+        width: calc(100% - 24px);
+        margin: 25px auto;
+    }
+
+    .events-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+
+        padding-bottom: 15px;
+    }
+
+    .events-header h2 {
+        font-size: 21px;
+    }
+
+    .events-header p {
+        font-size: 12px;
+    }
+
+    .view-all-events {
+        align-self: flex-start;
+
+        font-size: 12px;
+    }
+
+    .events-grid {
+        padding-top: 16px !important;
+    }
+
+    .events-group {
+        gap: 14px;
+        padding-right: 14px;
+    }
+
+    .event-card {
+        width: 310px;
+        min-width: 310px;
+        max-width: 310px;
+
+        min-height: 145px;
+    }
+
+    .event-card .event-date {
+        width: 68px;
+        min-width: 68px;
+    }
+
+    .event-card .event-date strong {
+        font-size: 25px;
+    }
+
+    .event-card .event-info {
+        padding: 16px 14px;
+    }
+
+    .event-card h3 {
+        font-size: 15px;
+    }
+
+    .event-card p {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+}

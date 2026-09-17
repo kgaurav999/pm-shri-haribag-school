@@ -1,0 +1,42 @@
+[
+    {
+        "id": 5,
+        "date": "2026-09-15",
+        "noticeType": "pdf",
+        "titleHi": "अर्धवार्षिक परीक्षा 2026 का कार्यक्रम",
+        "titleEn": "Half-Yearly Examination 2026 Schedule",
+        "descriptionHi": "अर्धवार्षिक परीक्षा 2026 का कार्यक्रम",
+        "descriptionEn": "Half-Yearly Examination 2026 Schedule",
+        "important": true,
+        "pdfUrl": "/uploads/notices/1789438359342-bachelor_certificate.pdf",
+        "externalLink": "https://chatgpt.com/c/6aa62d95-6048-83e8-9179-735c297e62ca"
+    },
+    {
+        "id": 1,
+        "date": "2026-09-12",
+        "titleHi": "अर्धवार्षिक परीक्षा 2026 का कार्यक्रम जारी",
+        "titleEn": "Half-Yearly Examination 2026 Schedule Released",
+        "important": true
+    },
+    {
+        "id": 2,
+        "date": "2026-09-05",
+        "titleHi": "शिक्षक दिवस समारोह",
+        "titleEn": "Teachers' Day Celebration",
+        "important": false
+    },
+    {
+        "id": 3,
+        "date": "2026-09-01",
+        "titleHi": "विद्यालय में नामांकन संबंधी सूचना",
+        "titleEn": "Notice Regarding School Admission",
+        "important": true
+    },
+    {
+        "id": 4,
+        "date": "2026-09-15",
+        "titleHi": "विद्यालय में स्वच्छता अभियान का आयोजन",
+        "titleEn": "Cleanliness Drive Organized in School",
+        "important": true
+    }
+]

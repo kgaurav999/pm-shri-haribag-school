@@ -1,0 +1,70 @@
+# ==========================================
+# PM SHRI HARIBAG SCHOOL WEBSITE
+# Git Ignore Configuration
+# ==========================================
+
+# ---------- Environment & Secrets ----------
+.env
+.env.*
+!.env.example
+
+# ---------- Node.js ----------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# ---------- Runtime / Logs ----------
+*.log
+logs/
+*.pid
+*.seed
+*.pid.lock
+
+# ---------- OS Generated Files ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------- IDE / Editor ----------
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+.idea/
+*.swp
+*.swo
+
+# ---------- Temporary Files ----------
+*.tmp
+*.temp
+*.bak
+*.old
+*~
+
+# ---------- Build / Coverage ----------
+dist/
+build/
+coverage/
+.cache/
+
+# ---------- Local Database / Backup Files ----------
+*.sql
+*.dump
+*.backup
+*.bak.sql
+
+# ---------- Local Database Engine Files ----------
+*.sqlite
+*.sqlite3
+*.db
+
+# ---------- Upload / Generated Temporary Files ----------
+backend/uploads/tmp/
+backend/uploads/temp/
+
+# ---------- Local Development Files ----------
+*.local
+
+# ---------- User Uploaded Files ----------
+backend/uploads/

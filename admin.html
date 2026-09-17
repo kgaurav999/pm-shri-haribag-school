@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | PM SHRI +2 Haribag High School</title>
+
+    <link rel="stylesheet" href="admin.css">
+   //link rel="stylesheet" href="modules/notices/notices.css">
+</head>
+
+<body>
+
+    <!-- Mobile Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="admin-sidebar" id="adminSidebar">
+
+        <div class="sidebar-brand">
+
+            <img src="assets/school-logo.png" alt="School Logo" class="admin-logo">
+
+            <div>
+                <h2>PM SHRI +2</h2>
+                <span>Haribag High School</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <p class="nav-title">MAIN MENU</p>
+
+            <a href="#" class="nav-item active">
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="#noticesModule" class="nav-item" id="noticesNavItem">
+                <span class="nav-icon">▤</span>
+                <span>Notices</span>
+            </a>
+
+        <a href="#eventsModule" class="nav-item" id="eventsNavItem">
+            <span class="nav-icon">◫</span>
+            <span>Events</span>
+        </a>
+
+            <a href="#teachersModule" class="nav-item" id="teachersNavItem">
+                <span class="nav-icon">♙</span>
+                <span>Teachers & Staff</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">▧</span>
+                <span>Gallery</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">★</span>
+                <span>Achievements</span>
+            </a>
+
+
+            <p class="nav-title">SCHOOL</p>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">▣</span>
+                <span>School Information</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">⚙</span>
+                <span>Settings</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="index.html" class="back-home">
+                ← View School Website
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN AREA ================= -->
+
+    <main class="admin-main">
+
+        <!-- TOPBAR -->
+
+        <header class="admin-topbar">
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button">
+                ☰
+            </button>
+
+            <div class="topbar-title">
+
+                <h1>Dashboard</h1>
+
+                <p>
+                    Welcome to School Administration Panel
+                </p>
+
+            </div>
+
+
+            <div class="admin-profile">
+
+                <div class="profile-avatar">
+                    KK
+                </div>
+
+                <div class="profile-info">
+
+                    <strong>Krishna Kumar Keshri</strong>
+
+                    <span>Administrator</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= DASHBOARD CONTENT ================= -->
+
+        <section class="dashboard-content">
+
+            <!-- Welcome -->
+
+            <div class="welcome-box">
+
+                <div>
+
+                    <span class="welcome-label">
+                        SCHOOL ADMINISTRATION
+                    </span>
+
+                    <h2>
+                        नमस्कार, प्रधानाध्यापक जी 👋
+                    </h2>
+
+                    <p>
+                        यहाँ से आप विद्यालय की वेबसाइट की
+                        सभी महत्वपूर्ण जानकारी को manage कर सकते हैं।
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- STAT CARDS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ▤
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>Total Notices</span>
+
+                        <strong id="dashboardNoticeCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ◫
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>Total Events</span>
+
+                        <strong id="dashboardEventCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ♙
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>Teachers & Staff</span>
+
+                        <strong id="dashboardTeacherCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ▧
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>Gallery Photos</span>
+
+                        <strong id="dashboardGalleryCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        QUICK ACTIONS
+                    </span>
+
+                    <h2>
+                        Manage Website
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="quick-actions">
+
+                <button class="action-card" type="button">
+
+                    <span class="action-icon">
+                        +
+                    </span>
+
+                    <span>
+                        Add Notice
+                    </span>
+
+                </button>
+
+
+                <button class="action-card" type="button">
+
+                    <span class="action-icon">
+                        +
+                    </span>
+
+                    <span>
+                        Add Event
+                    </span>
+
+                </button>
+
+
+                <button class="action-card" type="button">
+
+                    <span class="action-icon">
+                        +
+                    </span>
+
+                    <span>
+                        Add Teacher
+                    </span>
+
+                </button>
+                
+
+                <button class="action-card" type="button">
+
+                    <span class="action-icon">
+                        +
+                    </span>
+
+                    <span>
+                        Add Photo
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- RECENT ACTIVITY -->
+
+            <div class="dashboard-columns">
+
+
+                <!-- Recent Notices -->
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-card-header">
+
+                        <div>
+
+                            <span class="section-label">
+                                NOTICES
+                            </span>
+
+                            <h2>
+                                Recent Notices
+                            </h2>
+
+                        </div>
+
+                        <a href="#">
+                            View All →
+                        </a>
+
+                    </div>
+
+
+                    <div class="dashboard-list">
+
+                        <div class="empty-dashboard">
+                            Notices will appear here.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Upcoming Events -->
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-card-header">
+
+                        <div>
+
+                            <span class="section-label">
+                                EVENTS
+                            </span>
+
+                            <h2>
+                                Upcoming Events
+                            </h2>
+
+                        </div>
+
+                        <a href="#">
+                            View All →
+                        </a>
+
+                    </div>
+
+
+                    <div class="dashboard-list">
+
+                        <div class="empty-dashboard">
+                            Upcoming events will appear here.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SYSTEM STATUS -->
+
+            <div class="system-status">
+
+                <div>
+
+                    <span class="status-dot"></span>
+
+                    <strong>
+                        System Status
+                    </strong>
+
+                    <span>
+                        Website administration system is ready.
+                    </span>
+
+                </div>
+
+                <span class="status-online">
+                    Online
+                </span>
+
+            </div>
+
+<!-- =====================================================
+     NOTICES MODULE
+     ===================================================== -->
+
+<section class="module-section" id="noticesModule">
+
+    <!-- Module Header -->
+
+    <div class="module-header">
+
+        <div>
+
+            <span class="section-label">
+                NOTICES
+            </span>
+
+            <h2>
+                महत्वपूर्ण सूचनाएँ
+            </h2>
+
+            <p>
+                विद्यालय की महत्वपूर्ण सूचनाएँ यहाँ manage करें।
+            </p>
+
+        </div>
+
+
+        <button class="primary-btn" id="addNoticeBtn" type="button">
+            + Add Notice
+        </button>
+
+    </div>
+
+
+
+    <!-- =================================================
+         ADD / EDIT NOTICE FORM
+         ================================================= -->
+
+    <div class="module-card notice-form-card" id="noticeFormCard">
+
+        <div class="form-card-header">
+
+            <div>
+
+                <span class="section-label">
+                    ADD NOTICE
+                </span>
+
+                <h3>
+                    नई सूचना / Notice Information
+                </h3>
+
+                <p>
+                    विद्यालय की सूचना दर्ज करें।
+                    / Enter notice information.
+                </p>
+
+            </div>
+
+
+            <button type="button" class="form-close-btn" id="closeNoticeFormBtn">
+                ×
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             NOTICE FORM
+             ================================================= -->
+
+        <form id="noticeForm">
+
+
+            <!-- =============================================
+                 BASIC INFORMATION
+                 ============================================= -->
+
+            <div class="form-section">
+
+                <h4>
+                    मूल जानकारी / Basic Information
+                </h4>
+
+
+                <div class="form-grid">
+
+
+                    <!-- Notice Date -->
+
+                    <div class="form-group">
+
+                        <label for="noticeDate">
+                            सूचना दिनांक / Notice Date
+                            <span>*</span>
+                        </label>
+
+                        <input type="date" id="noticeDate" name="date" required>
+
+                    </div>
+
+
+
+                    <!-- Notice Type -->
+
+                    <div class="form-group">
+
+                        <label for="noticeType">
+                            सूचना प्रकार / Notice Type
+                            <span>*</span>
+                        </label>
+
+                        <select id="noticeType" name="noticeType" required>
+
+                            <option value="text">
+                                Text Only
+                            </option>
+
+                            <option value="pdf">
+                                PDF Notice
+                            </option>
+
+                            <option value="link">
+                                External Link
+                            </option>
+
+                            <option value="both">
+                                PDF + External Link
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =============================================
+                 HINDI INFORMATION
+                 ============================================= -->
+
+            <div class="form-section">
+
+                <h4>
+                    हिंदी जानकारी / Hindi Information
+                </h4>
+
+
+                <div class="form-grid">
+
+
+                    <!-- Hindi Title -->
+
+                    <div class="form-group form-group-full">
+
+                        <label for="noticeTitleHi">
+                            शीर्षक / Title
+                            <span>*</span>
+                        </label>
+
+                        <input type="text" id="noticeTitleHi" name="titleHi" placeholder="सूचना का शीर्षक" required>
+
+                    </div>
+
+
+
+                    <!-- Hindi Description -->
+
+                    <div class="form-group form-group-full">
+
+                        <label for="noticeDescriptionHi">
+                            विवरण / Description
+                        </label>
+
+                        <textarea id="noticeDescriptionHi" name="descriptionHi" rows="4"
+                            placeholder="सूचना का विवरण लिखें..."></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =============================================
+                 ENGLISH INFORMATION
+                 ============================================= -->
+
+            <div class="form-section">
+
+                <h4>
+                    English Information / अंग्रेज़ी जानकारी
+                </h4>
+
+
+                <div class="form-grid">
+
+
+                    <!-- English Title -->
+
+                    <div class="form-group form-group-full">
+
+                        <label for="noticeTitleEn">
+                            Title <span>*</span>
+                        </label>
+
+                        <input type="text" id="noticeTitleEn" name="titleEn" placeholder="Notice title" required>
+
+                    </div>
+
+
+
+                    <!-- English Description -->
+
+                    <div class="form-group form-group-full">
+
+                        <label for="noticeDescriptionEn">
+                            Description
+                        </label>
+
+                        <textarea id="noticeDescriptionEn" name="descriptionEn" rows="4"
+                            placeholder="Enter notice description..."></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =============================================
+                 PDF + LINK
+                 ============================================= -->
+
+            <div class="form-section">
+
+                <h4>
+                    Attachment / Link
+                </h4>
+
+
+                <div class="form-grid">
+
+
+                    <!-- PDF -->
+
+                    <div class="form-group" id="noticePdfGroup">
+
+                        <label for="noticePdf">
+                            PDF File
+                        </label>
+
+                        <input type="file" id="noticePdf" name="pdf" accept="application/pdf,.pdf">
+
+                        <small>
+                            केवल PDF file upload करें।
+                            Maximum size: 10 MB.
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- External Link -->
+
+                    <div class="form-group" id="noticeLinkGroup">
+
+                        <label for="noticeLink">
+                            External Link
+                        </label>
+
+                        <input type="url" id="noticeLink" name="externalLink" placeholder="https://example.com">
+
+                        <small>
+                            यदि सूचना किसी external website/link पर है।
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =============================================
+                 IMPORTANT
+                 ============================================= -->
+
+            <div class="form-section">
+
+                <div class="form-checkbox">
+
+                    <input type="checkbox" id="noticeImportant" name="important">
+
+                    <label for="noticeImportant">
+
+                        <strong>
+                            Important Notice
+                        </strong>
+
+                        <small>
+                            इस सूचना को महत्वपूर्ण के रूप में दिखाएँ।
+                        </small>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =============================================
+                 MESSAGE
+                 ============================================= -->
+
+            <div id="noticeMessage" class="message"></div>
+
+
+
+            <!-- =============================================
+                 FORM ACTIONS
+                 ============================================= -->
+
+            <div class="form-actions">
+
+                <button type="button" class="secondary-btn" id="cancelNoticeBtn">
+                    Cancel / रद्द करें
+                </button>
+
+
+                <button type="submit" class="primary-btn add-notice-btn">
+                    Save Notice / सूचना सहेजें
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+
+    <!-- =================================================
+         NOTICE LIST
+         ================================================= -->
+
+    <div class="module-card">
+
+        <div class="module-toolbar">
+
+            <div class="search-box">
+
+                <span>⌕</span>
+
+                <input type="text" id="noticeSearch" placeholder="Search notice...">
+
+            </div>
+
+        </div>
+
+
+        <div id="noticesList" class="admin-notices-list">
+
+            <div class="table-empty">
+                Notices will appear here.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     EVENTS MODULE
+     ===================================================== -->
+
+<section class="module-section" id="eventsModule">
+
+    <!-- Module Header -->
+    <div class="module-header">
+
+        <div>
+            <span class="section-label">EVENT MANAGEMENT</span>
+
+            <h2>
+                Events / कार्यक्रम
+            </h2>
+
+            <p>
+                School events, programs and important activities
+                manage करें.
+            </p>
+        </div>
+
+        <button
+            class="primary-btn"
+            id="addEventBtn"
+            type="button"
+        >
+            + Add Event
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         ADD / EDIT EVENT FORM
+         ================================================= -->
+
+    <div
+        class="module-card event-form-card"
+        id="eventFormCard"
+    >
+
+        <!-- Form Header -->
+
+        <div class="form-card-header">
+
+            <div>
+                <h3>
+                    Add Event / कार्यक्रम जोड़ें
+                </h3>
+
+                <p>
+                    Event की जानकारी नीचे भरें.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="form-close-btn"
+                id="closeEventFormBtn"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="eventForm">
+
+            <!-- =========================================
+                 EVENT BASIC INFORMATION
+                 ========================================= -->
+
+            <div class="form-section">
+
+                <h4>
+                    Event Information
+                </h4>
+
+
+                <div class="form-grid">
+
+                    <!-- Event Date -->
+
+                    <div class="form-group">
+
+                        <label for="eventDate">
+                            Event Date
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="eventDate"
+                            name="date"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Hindi Category -->
+
+                    <div class="form-group">
+
+                        <label for="eventCategoryHi">
+                            Category (Hindi)
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="eventCategoryHi"
+                            name="categoryHi"
+                            placeholder="जैसे — खेल, सांस्कृतिक कार्यक्रम"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- English Category -->
+
+                    <div class="form-group">
+
+                        <label for="eventCategoryEn">
+                            Category (English)
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="eventCategoryEn"
+                            name="categoryEn"
+                            placeholder="e.g. Sports, Cultural Program"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 EVENT TITLE
+                 ========================================= -->
+
+            <div class="form-section">
+
+                <h4>
+                    Event Title
+                </h4>
+
+
+                <div class="form-grid">
+
+                    <!-- Hindi Title -->
+
+                    <div class="form-group">
+
+                        <label for="eventTitleHi">
+                            Title (Hindi)
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="eventTitleHi"
+                            name="titleHi"
+                            placeholder="कार्यक्रम का नाम"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- English Title -->
+
+                    <div class="form-group">
+
+                        <label for="eventTitleEn">
+                            Title (English)
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="eventTitleEn"
+                            name="titleEn"
+                            placeholder="Event title"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 EVENT DESCRIPTION
+                 ========================================= -->
+
+            <div class="form-section">
+
+                <h4>
+                    Event Description
+                </h4>
+
+
+                <div class="form-grid">
+
+                    <!-- Hindi Description -->
+
+                    <div class="form-group">
+
+                        <label for="eventDescriptionHi">
+                            Description (Hindi)
+                        </label>
+
+                        <textarea
+                            id="eventDescriptionHi"
+                            name="descriptionHi"
+                            placeholder="कार्यक्रम के बारे में संक्षिप्त जानकारी..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <!-- English Description -->
+
+                    <div class="form-group">
+
+                        <label for="eventDescriptionEn">
+                            Description (English)
+                        </label>
+
+                        <textarea
+                            id="eventDescriptionEn"
+                            name="descriptionEn"
+                            placeholder="Brief information about the event..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 FORM ACTIONS
+                 ========================================= -->
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    id="cancelEventBtn"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary-btn add-event-btn"
+                >
+                    Save Event / कार्यक्रम सहेजें
+                </button>
+
+            </div>
+
+
+            <!-- Form Message -->
+
+            <div
+                id="eventMessage"
+                class="message"
+            ></div>
+
+        </form>
+
+    </div>
+
+
+    <!-- =================================================
+         EVENTS LIST
+         ================================================= -->
+
+    <div class="module-card">
+
+        <div class="card-head">
+
+            <div>
+                <h3>
+                    All Events
+                </h3>
+
+                <p>
+                    सभी विद्यालय कार्यक्रम एवं गतिविधियाँ
+                </p>
+            </div>
+
+        </div>
+
+
+        <div
+            id="eventsList"
+            class="admin-events-list"
+        >
+
+            <div class="notice-loading">
+                Events लोड हो रहे हैं...
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     EVENTS MODULE
+     ===================================================== -->
+
+<section class="module-section" id="eventsModule">
+
+    <!-- Module Header -->
+    <div class="module-header">
+
+        <div>
+            <span class="section-label">EVENT MANAGEMENT</span>
+
+            <h2>
+                Events / कार्यक्रम
+            </h2>
+
+            <p>
+                School events, programs and important activities
+                manage करें.
+            </p>
+        </div>
+
+        <button class="primary-btn" id="addEventBtn" type="button">
+            + Add Event
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         ADD / EDIT EVENT FORM
+         ================================================= -->
+
+    <div class="module-card event-form-card" id="eventFormCard">
+
+        <!-- Form Header -->
+
+        <div class="form-card-header">
+
+            <div>
+                <h3>
+                    Add Event / कार्यक्रम जोड़ें
+                </h3>
+
+                <p>
+                    Event की जानकारी नीचे भरें.
+                </p>
+            </div>
+
+            <button type="button" class="form-close-btn" id="closeEventFormBtn" aria-label="Close">
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="eventForm">
+
+            <!-- =========================================
+                 EVENT BASIC INFORMATION
+                 ========================================= -->
+
+            <div class="form-section">
+
+                <h4>
+                    Event Information
+                </h4>
+
+
+                <div class="form-grid">
+
+                    <!-- Event Date -->
+
+                    <div class="form-group">
+
+                        <label for="eventDate">
+                            Event Date
+                            <span>*</span>
+                        </label>
+
+                        <input type="date" id="eventDate" name="date" required>
+
+                    </div>
+
+
+                    <!-- Hindi Category -->
+
+                    <div class="form-group">
+
+                        <label for="eventCategoryHi">
+                            Category (Hindi)
+                            <span>*</span>
+                        </label>
+
+                        <input type="text" id="eventCategoryHi" name="categoryHi"
+                            placeholder="जैसे — खेल, सांस्कृतिक कार्यक्रम" required>
+
+                    </div>
+
+
+                    <!-- English Category -->
+
+                    <div class="form-group">
+
+                        <label for="eventCategoryEn">
+                            Category (English)
+                            <span>*</span>
+                        </label>
+
+                        <input type="text" id="eventCategoryEn" name="categoryEn"
+                            placeholder="e.g. Sports, Cultural Program" required>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 EVENT TITLE
+                 ========================================= -->
+
+            <div class="form-section">
+
+                <h4>
+                    Event Title
+                </h4>
+
+
+                <div class="form-grid">
+
+                    <!-- Hindi Title -->
+
+                    <div class="form-group">
+
+                        <label for="eventTitleHi">
+                            Title (Hindi)
+                            <span>*</span>
+                        </label>
+
+                        <input type="text" id="eventTitleHi" name="titleHi" placeholder="कार्यक्रम का नाम" required>
+
+                    </div>
+
+
+                    <!-- English Title -->
+
+                    <div class="form-group">
+
+                        <label for="eventTitleEn">
+                            Title (English)
+                            <span>*</span>
+                        </label>
+
+                        <input type="text" id="eventTitleEn" name="titleEn" placeholder="Event title" required>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 EVENT DESCRIPTION
+                 ========================================= -->
+
+            <div class="form-section">
+
+                <h4>
+                    Event Description
+                </h4>
+
+
+                <div class="form-grid">
+
+                    <!-- Hindi Description -->
+
+                    <div class="form-group">
+
+                        <label for="eventDescriptionHi">
+                            Description (Hindi)
+                        </label>
+
+                        <textarea id="eventDescriptionHi" name="descriptionHi"
+                            placeholder="कार्यक्रम के बारे में संक्षिप्त जानकारी..."></textarea>
+
+                    </div>
+
+
+                    <!-- English Description -->
+
+                    <div class="form-group">
+
+                        <label for="eventDescriptionEn">
+                            Description (English)
+                        </label>
+
+                        <textarea id="eventDescriptionEn" name="descriptionEn"
+                            placeholder="Brief information about the event..."></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 FORM ACTIONS
+                 ========================================= -->
+
+            <div class="form-actions">
+
+                <button type="button" class="secondary-btn" id="cancelEventBtn">
+                    Cancel
+                </button>
+
+                <button type="submit" class="primary-btn add-event-btn">
+                    Save Event / कार्यक्रम सहेजें
+                </button>
+
+            </div>
+
+
+            <!-- Form Message -->
+
+            <div id="eventMessage" class="message"></div>
+
+        </form>
+
+    </div>
+
+
+    <!-- =================================================
+         EVENTS LIST
+         ================================================= -->
+
+    <div class="module-card">
+
+        <div class="card-head">
+
+            <div>
+                <h3>
+                    All Events
+                </h3>
+
+                <p>
+                    सभी विद्यालय कार्यक्रम एवं गतिविधियाँ
+                </p>
+            </div>
+
+        </div>
+
+
+        <div id="eventsList" class="admin-events-list">
+
+            <div class="notice-loading">
+                Events लोड हो रहे हैं...
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+            <!-- =====================================================
+                 TEACHERS & STAFF MODULE
+                 ===================================================== -->
+            
+            <section class="module-section" id="teachersModule">
+            
+                <div class="module-header">
+            
+                    <div>
+                        <span class="section-label">TEACHERS & STAFF</span>
+            
+                        <h2>शिक्षक एवं कर्मचारी</h2>
+            
+                        <p>
+                            विद्यालय के शिक्षकों एवं कर्मचारियों की जानकारी यहाँ manage करें।
+                        </p>
+                    </div>
+            
+                    <button class="primary-btn" id="addTeacherBtn" type="button">
+                        + Add Teacher
+                    </button>
+            
+                </div>
+            
+            
+                <!-- Search / Filter -->
+            
+                <div class="module-toolbar">
+            
+                    <div class="search-box">
+            
+                        <span>⌕</span>
+            
+                        <input type="text" id="teacherSearch" placeholder="Search teacher...">
+            
+                    </div>
+            
+                </div>
+            
+                <!-- =====================================================
+                     ADD TEACHER FORM
+                     ===================================================== -->
+                
+                <div class="module-card teacher-form-card" id="teacherFormCard">
+                
+                    <div class="form-card-header">
+                
+                        <div>
+                            <span class="section-label">ADD TEACHER</span>
+                
+                            <h3>नए शिक्षक की जानकारी / Teacher Information</h3>
+                
+                            <p>
+                                विद्यालय के शिक्षक या कर्मचारी की जानकारी दर्ज करें।
+                                / Enter teacher or staff information.
+                            </p>
+                        </div>
+                
+                        <button type="button" class="form-close-btn" id="closeTeacherFormBtn">
+                            ×
+                        </button>
+                
+                    </div>
+                
+                
+                    <form id="teacherForm">
+                
+                        <!-- Hindi Information -->
+                
+                        <div class="form-section">
+                
+                            <h4>हिंदी जानकारी / Hindi Information</h4>
+                
+                            <div class="form-grid">
+                
+                                <div class="form-group">
+                
+                                    <label for="teacherNameHi">
+                                        नाम <span>*</span>
+                                    </label>
+                
+                                    <input type="text" id="teacherNameHi" name="nameHi" placeholder="शिक्षक का नाम" required>
+                
+                                </div>
+                
+                
+                                <div class="form-group">
+                
+                                    <label for="teacherDesignationHi">
+                                        पद / Designation
+                                    </label>
+                
+                                    <input type="text" id="teacherDesignationHi" name="designationHi"
+                                        placeholder="जैसे — उच्च माध्यमिक शिक्षक">
+                
+                                </div>
+                
+                
+                                <div class="form-group">
+                
+                                    <label for="teacherSubjectHi">
+                                        विषय
+                                    </label>
+                
+                                    <input type="text" id="teacherSubjectHi" name="subjectHi" placeholder="जैसे — कंप्यूटर विज्ञान">
+                
+                                </div>
+                
+                            </div>
+                
+                        </div>
+                
+                
+                        <!-- English Information -->
+                
+                        <div class="form-section">
+                
+                            <h4>English Information / अंग्रेज़ी जानकारी</h4>
+                
+                            <div class="form-grid">
+                
+                                <div class="form-group">
+                
+                                    <label for="teacherNameEn">
+                                        Name <span>*</span>
+                                    </label>
+                
+                                    <input type="text" id="teacherNameEn" name="nameEn" placeholder="Teacher's name" required>
+                
+                                </div>
+                
+                
+                                <div class="form-group">
+                
+                                    <label for="teacherDesignationEn">
+                                        Designation
+                                    </label>
+                
+                                    <input type="text" id="teacherDesignationEn" name="designationEn"
+                                        placeholder="e.g. Higher Secondary Teacher">
+                
+                                </div>
+                
+                
+                                <div class="form-group">
+                
+                                    <label for="teacherSubjectEn">
+                                        Subject
+                                    </label>
+                
+                                    <input type="text" id="teacherSubjectEn" name="subjectEn" placeholder="e.g. Computer Science">
+                
+                                </div>
+                
+                            </div>
+                
+                        </div>
+                
+                
+                        <!-- Photo + Order -->
+                
+                        <div class="form-section">
+                
+                            <h4>अन्य जानकारी / Other Information</h4>
+                
+                            <div class="form-grid">
+                
+                                <div class="form-group">
+                
+                                    <label for="teacherPhoto">
+                                        फोटो / Photo
+                                    </label>
+                
+                                    <input type="file" id="teacherPhoto" name="photo" accept="image/*">
+                
+                                    <small>
+                                        JPG, PNG or WebP recommended.
+                                    </small>
+                
+                                </div>
+                
+                
+                                <div class="form-group">
+                
+                                    <label for="teacherOrder">
+                                        प्रदर्शन क्रम / Display Order
+                                    </label>
+                
+                                    <input type="number" id="teacherOrder" name="displayOrder" value="0" min="0">
+                
+                                    <small>
+                                        Lower number appears first.
+                                    </small>
+                
+                                </div>
+                
+                            </div>
+                
+                        </div>
+                
+                
+                        <!-- Form Actions -->
+                
+                        <div class="form-actions">
+                
+                            <button type="button" class="secondary-btn" id="cancelTeacherBtn">
+                                Cancel / रद्द करें
+                            </button>
+                
+                            <button type="submit" class="primary-btn">
+                                Save Teacher / शिक्षक सहेजें
+                            </button>
+                
+                        </div>
+                
+                    </form>
+                
+                </div>
+                <!-- Teachers Table -->
+            
+                <div class="module-card">
+            
+                    <div class="table-wrapper">
+            
+                        <table class="data-table">
+            
+                            <thead>
+            
+                                <tr>
+            
+                                    <th>#</th>
+            
+                                    <th>Teacher</th>
+            
+                                    <th>Designation</th>
+            
+                                    <th>Subject</th>
+            
+                                    <th>Order</th>
+            
+                                    <th>Action</th>
+            
+                                </tr>
+            
+                            </thead>
+            
+                            <tbody id="teachersTableBody">
+            
+                                <tr>
+            
+                                    <td colspan="6" class="table-empty">
+            
+                                        No teachers added yet.
+            
+                                    </td>
+            
+                                </tr>
+            
+                            </tbody>
+            
+                        </table>
+            
+                    </div>
+            
+                </div>
+            
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- Mobile Menu Script -->
+    <script src="admin.js"></script>
+    <script>
+
+        const menuBtn =
+            document.getElementById("mobileMenuBtn");
+
+        const sidebar =
+            document.getElementById("adminSidebar");
+
+        const overlay =
+            document.getElementById("sidebarOverlay");
+
+
+        menuBtn.addEventListener("click", function () {
+
+            sidebar.classList.toggle("mobile-open");
+
+            overlay.classList.toggle("show");
+
+        });
+
+
+        overlay.addEventListener("click", function () {
+
+            sidebar.classList.remove("mobile-open");
+
+            overlay.classList.remove("show");
+
+        });
+
+    </script>
+
+</body>
+
+</html>

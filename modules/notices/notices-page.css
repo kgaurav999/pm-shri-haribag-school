@@ -1,0 +1,835 @@
+/* =========================================================
+   NOTICES PAGE
+   PM SHRI +2 HARIBAG HIGH SCHOOL
+   ========================================================= */
+
+
+/* =========================================================
+   HEADER OVERRIDE
+   Keep the public page compact and consistent
+   ========================================================= */
+
+.site-header {
+    padding: 8px 0 0;
+}
+
+.site-header .brand-row {
+    padding-top: 0;
+    padding-bottom: 4px;
+}
+
+.site-header .school-logo {
+    width: 100px;
+    height: 100px;
+}
+
+.site-header .brand-text h1 {
+    margin-bottom: 4px;
+}
+
+.site-header .brand-text p {
+    margin: 0;
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.main-nav {
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.main-nav .nav-inner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
+
+.main-nav a {
+    color: #123f66;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    transition:
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+.main-nav a:hover {
+    color: #c46a16;
+}
+
+.main-nav a.active {
+    color: #c46a16;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+   ========================================================= */
+
+.notices-page-header {
+    padding: 42px 0 34px;
+    background: #f7f9fb;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.notices-page-header .section-label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #c46a16;
+}
+
+.notices-page-header h2 {
+    margin: 0 0 8px;
+    font-size: 32px;
+    line-height: 1.25;
+    color: #123f66;
+}
+
+.notices-page-header p {
+    max-width: 700px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #64748b;
+}
+
+
+/* =========================================================
+   MAIN SECTION
+   ========================================================= */
+
+.notices-page-section {
+    padding: 34px 0 55px;
+    background: #f7f9fb;
+}
+
+
+/* =========================================================
+   MAIN CARD
+   ========================================================= */
+
+.notices-page-card {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #dfe7ee;
+    border-radius: 12px;
+    overflow: hidden;
+    box-sizing: border-box;
+    box-shadow:
+        0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+
+/* =========================================================
+   TOOLBAR
+   ========================================================= */
+
+.notices-page-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 25px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #ffffff;
+}
+
+.notices-page-toolbar h3 {
+    margin: 0 0 4px;
+    font-size: 20px;
+    line-height: 1.35;
+    color: #172033;
+}
+
+.notices-page-toolbar p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #64748b;
+}
+
+
+/* =========================================================
+   BACK HOME BUTTON
+   ========================================================= */
+
+.back-home-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 8px 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #334155;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.back-home-btn:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   NOTICE LIST
+   ========================================================= */
+
+.all-notices-list {
+    width: 100%;
+}
+
+
+/* =========================================================
+   NOTICE ITEM
+   ========================================================= */
+
+.notice-page-item {
+    display: flex;
+    align-items: stretch;
+    min-height: 125px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #ffffff;
+    transition: background 0.2s ease;
+}
+
+.notice-page-item:hover {
+    background: #fcfdfe;
+}
+
+.notice-page-item:last-child {
+    border-bottom: 0;
+}
+
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+.notice-page-date {
+    width: 145px;
+    min-width: 145px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background: #f8fafc;
+    border-right: 1px solid #e2e8f0;
+}
+
+.notice-page-date strong {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #475569;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.notice-page-content {
+    flex: 1;
+    min-width: 0;
+    padding: 21px 25px;
+}
+
+.notice-page-title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.notice-page-title-row h4 {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.45;
+    color: #172033;
+}
+
+
+/* =========================================================
+   IMPORTANT BADGE
+   ========================================================= */
+
+.notice-page-important {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: #fff7ed;
+    color: #c2410c;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.notice-page-description {
+    margin: 8px 0 0;
+    max-width: 850px;
+    font-size: 13px;
+    line-height: 1.65;
+    color: #64748b;
+}
+
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.notice-page-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 13px;
+}
+
+
+/* =========================================================
+   ACTION BUTTON BASE
+   ========================================================= */
+
+.notice-page-view-btn,
+.notice-page-download-btn,
+.notice-page-link-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 34px;
+    padding: 7px 12px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+/* =========================================================
+   VIEW PDF
+   ========================================================= */
+
+.notice-page-view-btn {
+    border: 1px solid #cbd5e1;
+    background: #f1f5f9;
+    color: #1e3a5f;
+}
+
+.notice-page-view-btn:hover {
+    background: #e2e8f0;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   DOWNLOAD
+   ========================================================= */
+
+.notice-page-download-btn {
+    border: 1px solid #1e5a8a;
+    background: #1e5a8a;
+    color: #ffffff;
+}
+
+.notice-page-download-btn:hover {
+    background: #16476d;
+    border-color: #16476d;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   EXTERNAL LINK
+   ========================================================= */
+
+.notice-page-link-btn {
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #334155;
+}
+
+.notice-page-link-btn:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   LOADING / EMPTY / ERROR
+   ========================================================= */
+
+.notice-page-loading,
+.notice-page-error,
+.notice-page-empty {
+    padding: 55px 25px;
+    text-align: center;
+}
+
+.notice-page-loading {
+    color: #64748b;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.notice-page-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+}
+
+.notice-page-empty .empty-icon {
+    margin-bottom: 5px;
+    font-size: 32px;
+}
+
+.notice-page-empty strong {
+    font-size: 15px;
+    color: #172033;
+}
+
+.notice-page-empty span {
+    font-size: 12px;
+    color: #64748b;
+}
+
+
+/* =========================================================
+   ERROR STATE
+   ========================================================= */
+
+.notice-page-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.notice-page-error strong {
+    font-size: 15px;
+    color: #172033;
+}
+
+.notice-page-error span {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.notice-page-error button {
+    margin-top: 8px;
+    padding: 8px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #334155;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.notice-page-error button:hover {
+    background: #f8fafc;
+}
+
+
+/* =========================================================
+   PDF VIEWER
+   ========================================================= */
+
+#noticePdfViewer {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+}
+
+#noticePdfViewer.open {
+    display: block;
+}
+
+
+/* =========================================================
+   PDF OVERLAY
+   ========================================================= */
+
+.notice-pdf-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(15, 23, 42, 0.78);
+}
+
+
+/* =========================================================
+   PDF MODAL
+   ========================================================= */
+
+.notice-pdf-modal {
+    width: min(1100px, 100%);
+    height: min(90vh, 850px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.30);
+}
+
+
+/* =========================================================
+   PDF HEADER
+   ========================================================= */
+
+.notice-pdf-header {
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 0 16px 0 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #e2e8f0;
+    background: #ffffff;
+}
+
+.notice-pdf-header strong {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 15px;
+    color: #172033;
+}
+
+
+/* =========================================================
+   PDF CLOSE BUTTON
+   ========================================================= */
+
+.notice-pdf-close {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    border-radius: 7px;
+    background: #f1f5f9;
+    color: #172033;
+    font-family: Arial, sans-serif;
+    font-size: 27px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.notice-pdf-close:hover {
+    background: #e2e8f0;
+}
+
+
+/* =========================================================
+   PDF BODY
+   ========================================================= */
+
+.notice-pdf-body {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    background: #525659;
+}
+
+#noticePdfFrame {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
+    background: #ffffff;
+}
+
+body.notice-pdf-open {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .site-header .school-logo {
+        width: 85px;
+        height: 85px;
+    }
+
+    .main-nav .nav-inner {
+        gap: 15px;
+    }
+
+    .main-nav a {
+        font-size: 13px;
+    }
+
+    .notice-page-date {
+        width: 125px;
+        min-width: 125px;
+    }
+
+    .notice-page-content {
+        padding: 20px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /* Header */
+
+    .site-header {
+        padding-top: 5px;
+    }
+
+    .site-header .brand-row {
+        padding-bottom: 5px;
+    }
+
+    .site-header .school-logo {
+        width: 65px;
+        height: 65px;
+    }
+
+
+    /* Navigation */
+
+    .main-nav .nav-inner {
+        gap: 9px 14px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .main-nav a {
+        font-size: 12px;
+    }
+
+
+    /* Page Header */
+
+    .notices-page-header {
+        padding: 32px 0 25px;
+    }
+
+    .notices-page-header h2 {
+        font-size: 24px;
+    }
+
+    .notices-page-header p {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+
+    /* Main Section */
+
+    .notices-page-section {
+        padding: 20px 0 40px;
+    }
+
+
+    /* Main Card */
+
+    .notices-page-card {
+        border-radius: 9px;
+    }
+
+
+    /* Toolbar */
+
+    .notices-page-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 13px;
+        padding: 17px 18px;
+    }
+
+    .notices-page-toolbar h3 {
+        font-size: 18px;
+    }
+
+    .back-home-btn {
+        align-self: flex-start;
+    }
+
+
+    /* Notice Item */
+
+    .notice-page-item {
+        flex-direction: column;
+    }
+
+
+    /* Date */
+
+    .notice-page-date {
+        width: 100%;
+        min-width: 0;
+        min-height: 46px;
+        justify-content: flex-start;
+        padding: 11px 18px;
+        text-align: left;
+        border-right: 0;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+
+    /* Content */
+
+    .notice-page-content {
+        padding: 17px 18px;
+    }
+
+    .notice-page-title-row {
+        gap: 7px;
+    }
+
+    .notice-page-title-row h4 {
+        font-size: 15px;
+        line-height: 1.45;
+    }
+
+    .notice-page-description {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+
+    /* Actions */
+
+    .notice-page-actions {
+        gap: 6px;
+        margin-top: 12px;
+    }
+
+    .notice-page-view-btn,
+    .notice-page-download-btn,
+    .notice-page-link-btn {
+        min-height: 32px;
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+
+
+    /* PDF Viewer */
+
+    .notice-pdf-overlay {
+        padding: 8px;
+    }
+
+    .notice-pdf-modal {
+        height: 94vh;
+        border-radius: 8px;
+    }
+
+    .notice-pdf-header {
+        min-height: 50px;
+        padding-left: 14px;
+    }
+
+    .notice-pdf-header strong {
+        font-size: 13px;
+    }
+
+    .notice-pdf-close {
+        width: 34px;
+        height: 34px;
+        font-size: 24px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .main-nav .nav-inner {
+        gap: 8px 11px;
+    }
+
+    .main-nav a {
+        font-size: 11px;
+    }
+
+    .notices-page-header h2 {
+        font-size: 22px;
+    }
+
+    .notice-page-actions {
+        width: 100%;
+    }
+
+    .notice-page-view-btn,
+    .notice-page-download-btn,
+    .notice-page-link-btn {
+        font-size: 10px;
+        padding: 6px 9px;
+    }
+}

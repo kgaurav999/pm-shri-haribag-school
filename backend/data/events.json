@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "date": "2026-09-25",
+        "categoryHi": "विद्यालय गतिविधि",
+        "categoryEn": "School Activity",
+        "titleHi": "स्वच्छता अभियान",
+        "titleEn": "Cleanliness Drive",
+        "descriptionHi": "विद्यालय परिसर में स्वच्छता एवं जागरूकता अभियान का आयोजन।",
+        "descriptionEn": "Cleanliness and awareness drive to be organised in the school campus."
+    },
+    {
+        "id": 2,
+        "date": "2026-10-05",
+        "categoryHi": "अभिभावक बैठक",
+        "categoryEn": "Parent Meeting",
+        "titleHi": "अभिभावक-शिक्षक बैठक",
+        "titleEn": "Parent-Teacher Meeting",
+        "descriptionHi": "विद्यार्थियों की शैक्षणिक प्रगति एवं विद्यालयी गतिविधियों पर चर्चा।",
+        "descriptionEn": "Discussion on students' academic progress and school activities."
+    },
+    {
+        "id": 3,
+        "date": "2026-11-14",
+        "categoryHi": "सांस्कृतिक कार्यक्रम",
+        "categoryEn": "Cultural Event",
+        "titleHi": "बाल दिवस समारोह",
+        "titleEn": "Children's Day Celebration",
+        "descriptionHi": "विद्यार्थियों के लिए सांस्कृतिक एवं रचनात्मक गतिविधियों का आयोजन।",
+        "descriptionEn": "Cultural and creative activities organised for students."
+    }
+]
