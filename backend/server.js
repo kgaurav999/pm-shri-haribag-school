@@ -28,11 +28,7 @@ const uploadDir = path.join(__dirname, "uploads", "notices");
 // TEACHER PHOTO UPLOAD CONFIGURATION
 // =========================================
 
-const teacherUploadDir = path.join(
-  __dirname,
-  "uploads",
-  "teachers"
-);
+const teacherUploadDir = path.join(__dirname, "uploads", "teachers");
 
 if (!fs.existsSync(teacherUploadDir)) {
   fs.mkdirSync(teacherUploadDir, {
@@ -62,23 +58,30 @@ const teacherUpload = multer({
   },
 
   fileFilter: function (req, file, cb) {
-    const allowedTypes = [
-      "image/jpeg",
-      "image/png",
-      "image/webp",
-    ];
+    const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
 
     if (!allowedTypes.includes(file.mimetype)) {
-      return cb(
-        new Error(
-          "Only JPG, PNG and WEBP images are allowed."
-        )
-      );
+      return cb(new Error("Only JPG, PNG and WEBP images are allowed."));
     }
 
     cb(null, true);
   },
 });
+
+// =========================================
+// TEACHER PHOTO DELETE HELPER
+// =========================================
+
+function deleteTeacherPhoto(photoFile) {
+  if (!photoFile) return;
+
+  const filePath = path.join(__dirname, "uploads", photoFile);
+
+  if (fs.existsSync(filePath)) {
+    fs.unlinkSync(filePath);
+    console.log("Teacher photo deleted:", filePath);
+  }
+}
 
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
@@ -600,7 +603,8 @@ app.put("/api/events/:id", async (req, res) => {
 // DELETE EVENT
 
 app.delete("/api/events/:id", async (req, res) => {
-  try {rs
+  try {
+    rs;
     const result = await pool.query(
       `DELETE FROM events
              WHERE id = $1
@@ -681,10 +685,7 @@ app.get("/api/teachers", async (req, res) => {
 // ADD TEACHER API
 // =========================================
 
-app.post(
-  "/api/teachers",
-  teacherUpload.single("photo"),
-  async (req, res) => {
+app.post("/api/teachers", teacherUpload.single("photo"), async (req, res) => {
   try {
     const {
       nameHi,
@@ -706,17 +707,18 @@ app.post(
 
     const result = await pool.query(
       `
-            INSERT INTO teachers (
-                name_hi,
-                name_en,
-                designation_hi,
-                designation_en,
-                subject_hi,
-                subject_en,
-                display_order
-            )
+           INSERT INTO teachers (
+    name_hi,
+    name_en,
+    designation_hi,
+    designation_en,
+    subject_hi,
+    subject_en,
+    photo_file,
+    display_order
+)
 
-            VALUES ($1, $2, $3, $4, $5, $6, $7)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
 
             RETURNING *
             `,
@@ -727,6 +729,7 @@ app.post(
         designationEn || null,
         subjectHi || null,
         subjectEn || null,
+        photoFile,
         Number(displayOrder) || 0,
       ],
     );
@@ -745,70 +748,103 @@ app.post(
 // UPDATE TEACHER API
 // =========================================
 
-app.put("/api/teachers/:id", async (req, res) => {
-  try {
-    const teacherId = Number(req.params.id);
+app.put(
+  "/api/teachers/:id",
+  teacherUpload.single("photo"),
+  async (req, res) => {
+    try {
+      const teacherId = Number(req.params.id);
+      // Get old teacher photo
+      const oldTeacherResult = await pool.query(
+        `
+  SELECT photo_file
+  FROM teachers
+  WHERE id = $1
+  `,
+        [teacherId],
+      );
 
-    const {
-      nameHi,
-      nameEn,
-      designationHi,
-      designationEn,
-      subjectHi,
-      subjectEn,
-      displayOrder,
-    } = req.body;
+      if (oldTeacherResult.rows.length === 0) {
+        if (req.file) {
+          deleteTeacherPhoto(`teachers/${req.file.filename}`);
+        }
 
-    if (!nameHi || !nameEn) {
-      return res.status(400).json({
-        error: "Hindi and English teacher names are required.",
-      });
-    }
+        return res.status(404).json({
+          error: "Teacher not found.",
+        });
+      }
 
-    const result = await pool.query(
-      `
-            UPDATE teachers
+      const oldPhotoFile = oldTeacherResult.rows[0].photo_file;
 
-            SET
-                name_hi = $1,
-                name_en = $2,
-                designation_hi = $3,
-                designation_en = $4,
-                subject_hi = $5,
-                subject_en = $6,
-                display_order = $7
-
-            WHERE id = $8
-
-            RETURNING *
-            `,
-      [
+      const {
         nameHi,
         nameEn,
-        designationHi || null,
-        designationEn || null,
-        subjectHi || null,
-        subjectEn || null,
-        Number(displayOrder) || 0,
-        teacherId,
-      ],
-    );
+        designationHi,
+        designationEn,
+        subjectHi,
+        subjectEn,
+        displayOrder,
+      } = req.body;
+      const photoFile = req.file ? `teachers/${req.file.filename}` : null;
+      if (!nameHi || !nameEn) {
+        return res.status(400).json({
+          error: "Hindi and English teacher names are required.",
+        });
+      }
 
-    if (result.rows.length === 0) {
-      return res.status(404).json({
-        error: "Teacher not found.",
+      const result = await pool.query(
+        `
+     UPDATE teachers
+
+     SET
+         name_hi = $1,
+         name_en = $2,
+         designation_hi = $3,
+         designation_en = $4,
+         subject_hi = $5,
+         subject_en = $6,
+         photo_file = COALESCE($7, photo_file),
+         display_order = $8
+
+     WHERE id = $9
+
+     RETURNING *
+     `,
+
+        [
+          nameHi,
+          nameEn,
+          designationHi || null,
+          designationEn || null,
+          subjectHi || null,
+          subjectEn || null,
+          photoFile,
+          Number(displayOrder) || 0,
+          teacherId,
+        ],
+      );
+
+      // Delete old photo only when a new photo was uploaded
+      if (req.file && oldPhotoFile) {
+        deleteTeacherPhoto(oldPhotoFile);
+      }
+
+      if (result.rows.length === 0) {
+        return res.status(404).json({
+          error: "Teacher not found.",
+        });
+      }
+
+      res.json(result.rows[0]);
+    } catch (error) {
+      console.error("Update Teacher API Error:", error);
+
+      res.status(500).json({
+        error: "Failed to update teacher.",
       });
     }
-
-    res.json(result.rows[0]);
-  } catch (error) {
-    console.error("Update Teacher API Error:", error);
-
-    res.status(500).json({
-      error: "Failed to update teacher.",
-    });
-  }
-});
+  },
+);
 
 // =========================================
 // DELETE TEACHER API
@@ -837,6 +873,13 @@ app.delete("/api/teachers/:id", async (req, res) => {
       return res.status(404).json({
         error: "Teacher not found.",
       });
+    }
+
+    // Delete teacher photo from server
+    const deletedTeacher = result.rows[0];
+
+    if (deletedTeacher.photo_file) {
+      deleteTeacherPhoto(deletedTeacher.photo_file);
     }
 
     res.json({

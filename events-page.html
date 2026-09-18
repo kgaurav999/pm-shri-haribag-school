@@ -27,132 +27,32 @@
          TOP BAR
          ===================================================== -->
 
-    <div class="topbar">
-
-        <div class="container topbar-inner">
-
-            <div class="topbar-left">
-
-                <span>
-                    📧
-                    hsdhekwaha@outlook.com
-                </span>
-
-                <span>
-                    📍
-                    Dhekwaha-Saraiya,
-                    Islampur-801303,
-                    Nalanda, Bihar
-                </span>
-
-            </div>
-
-
-            <div class="topbar-right">
-
-                <button type="button" id="hiBtn" onclick="setEventsPageLanguage('hi')">
-                    हिन्दी
-                </button>
-
-                <button type="button" id="enBtn" onclick="setEventsPageLanguage('en')">
-                    English
-                </button>
-
-            </div>
-
+<header class="topbar">
+    <div class="container topbar-inner">
+        <span>✉ hsdhekwaha@outlook.com</span>
+        <span>📍 Dhekwaha-Saraiya, Islampur-801303, Nalanda, Bihar</span>
+        <div class="lang-switch">
+            <button id="hiBtn" class="active">हिन्दी</button>
+            <button id="enBtn">English</button>
         </div>
-
     </div>
+</header>
 
-
-
-    <!-- =====================================================
-         SCHOOL HEADER
-         ===================================================== -->
-
-    <header class="site-header">
-
-        <div class="container">
-
-            <div class="brand-row">
-
-                <a href="index.html" class="brand">
-
-                    <img src="assets/school-logo.png" alt="PM SHRI +2 Haribag High School Logo" class="school-logo">
-
-
-                    <div class="brand-text">
-
-                        <h1>
-                            PM SHRI +2 HARIBAG HIGH SCHOOL
-                        </h1>
-
-                        <p>
-                            Dhekwaha-Saraiya,
-                            Islampur-801303,
-                            Nalanda, Bihar
-                        </p>
-
-                    </div>
-
-                </a>
-
+<header class="brand">
+    <div class="container brand-inner">
+        <img src="assets/school-logo.png" alt="PM SHRI +2 Haribag High School Logo" class="school-logo" />
+        <div>
+            <h1>PM SHRI +2 HARIBAG HIGH SCHOOL</h1>
+            <div class="address">
+                Dhekwaha-Saraiya, Islampur-801303, Nalanda, Bihar
             </div>
-
         </div>
-
-    </header>
-
-
-
-    <!-- =====================================================
-         NAVIGATION
-         ===================================================== -->
-
-    <nav class="main-nav">
-
-        <div class="container nav-inner">
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="index.html#about">
-                About School
-            </a>
-
-            <a href="index.html#administration">
-                Administration
-            </a>
-
-            <a href="index.html#academics">
-                Academics
-            </a>
-
-            <a href="index.html#facilities">
-                Facilities
-            </a>
-
-            <a href="events-page.html" class="active">
-                Activities
-            </a>
-
-            <a href="notices-page.html">
-                Notices
-            </a>
-
-            <a href="index.html#gallery">
-                Gallery
-            </a>
-
-            <a href="index.html#contact">
-                Contact
-            </a>
-
+        <div class="motto">
+            <strong>“ज्ञान • अनुशासन • उत्कृष्टता”</strong>
+            <span>Knowledge | Discipline | Excellence</span>
         </div>
-
-    </nav>
-
+    </div>
+</header>
 
 
     <!-- =====================================================
@@ -318,6 +218,7 @@
          EVENTS PAGE JAVASCRIPT
          ===================================================== -->
 
+    <script src="script.js"></script>
     <script src="modules/events/events-page.js"></script>
 
 
