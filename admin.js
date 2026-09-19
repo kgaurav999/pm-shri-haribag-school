@@ -157,23 +157,26 @@ if (galleryForm) {
         throw new Error(result.error || "Gallery photo upload failed.");
       }
 
-      alert("Gallery photo successfully added! ✓");
+      /* SUCCESS POPUP */
+      /* SUCCESS POPUP */
+
+      alert(
+        "Gallery photo successfully added! ✓\n" + "फोटो सफलतापूर्वक add हो गई।",
+      );
 
       galleryForm.reset();
 
       document.getElementById("galleryDisplayOrder").value = 0;
 
-      // Close Gallery Form
-      const galleryFormCard = document.getElementById("galleryFormCard");
-
-      if (galleryFormCard) {
-        galleryFormCard.style.display = "none";
+      /* Keep Gallery module open after adding */
+      if (typeof window.showGallery === "function") {
+        window.showGallery();
+      } else {
+        await loadAdminGallery();
       }
 
-      // Reload Gallery
-      await loadAdminGallery();
+      /* Update Dashboard Gallery Count */
 
-      // Update Dashboard Gallery Count
       if (typeof loadDashboardGallery === "function") {
         await loadDashboardGallery();
       }
@@ -895,7 +898,6 @@ if (noticeForm) {
     button.disabled = true;
 
     button.textContent = "Saving Notice...";
-
     const editingId = noticeForm.dataset.editingId;
 
     try {
@@ -1032,7 +1034,8 @@ if (noticeForm) {
 
 async function deleteNotice(id) {
   const confirmDelete = confirm(
-    "क्या आप इस notice को permanently delete करना चाहते हैं?",
+    "क्या आप इस notice को permanently delete करना चाहते हैं?\n\n" +
+      "Are you sure you want to delete this notice?",
   );
 
   if (!confirmDelete) {
@@ -1047,20 +1050,20 @@ async function deleteNotice(id) {
     const result = await response.json();
 
     if (!response.ok) {
-      throw new Error(result.message || "Delete failed.");
+      throw new Error(
+        result.message || result.error || "Notice delete failed.",
+      );
     }
+
+    alert(
+      "Notice deleted successfully!\n" + "Notice सफलतापूर्वक delete हो गया।",
+    );
 
     await loadAdminNotices();
-
-    const noticesModule = document.getElementById("noticesModule");
-
-    if (noticesModule) {
-      noticesModule.style.display = "block";
-    }
   } catch (error) {
     console.error("DELETE NOTICE ERROR:", error);
 
-    alert("Notice delete नहीं हो सका।");
+    alert(error.message || "Notice delete नहीं हो सका।");
   }
 }
 
@@ -1357,9 +1360,11 @@ document.addEventListener("DOMContentLoaded", function () {
       teachersModule.style.display = "none";
     }
   }
+
   if (galleryModule) {
     galleryModule.style.display = "none";
   }
+
   /* =================================================
        SHOW DASHBOARD
        ================================================= */
@@ -1447,6 +1452,7 @@ document.addEventListener("DOMContentLoaded", function () {
       loadTeachers();
     }
   }
+
   // =================================================
   // SHOW GALLERY
   // =================================================
@@ -1466,10 +1472,15 @@ document.addEventListener("DOMContentLoaded", function () {
       galleryModule.style.display = "block";
     }
 
+    /* Load Gallery only when Gallery is opened */
     if (typeof loadAdminGallery === "function") {
       loadAdminGallery();
     }
   }
+
+  /* Make Gallery navigation available to Gallery CRUD handlers */
+  window.showGallery = showGallery;
+
   /* =================================================
        NAVIGATION CLICK
        ================================================= */
@@ -1527,6 +1538,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return;
       }
+
       /* Gallery */
 
       if (itemId === "galleryNavItem") {
@@ -1534,6 +1546,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return;
       }
+
       /*
                    Other menu items:
                    अभी उनका module नहीं बना है,
@@ -1549,6 +1562,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   hideAllModules();
 });
+
 /* =========================================================
    TEACHER FORM - OPEN / CLOSE
    ========================================================= */
@@ -1775,10 +1789,9 @@ async function loadTeachers() {
                             >
                                 Edit
                             </button>
-
                             <button
                                 type="button"
-                                class="table-action delete"
+                                class="table-action delete teacher-delete-btn"
                                 data-id="${teacher.id}"
                             >
                                 Delete
@@ -1924,17 +1937,23 @@ async function openTeacherEditForm(teacherId) {
 
 /* =========================================================
    DELETE TEACHER
-   ========================================================= */
+========================================================= */
 
 document.addEventListener("click", async function (event) {
   const deleteButton = event.target.closest(".teacher-delete-btn");
+
   if (!deleteButton) {
     return;
   }
 
+  event.preventDefault();
+
   const teacherId = Number(deleteButton.dataset.id);
 
-  /* Safety confirmation */
+  if (!teacherId) {
+    alert("Invalid teacher ID.");
+    return;
+  }
 
   const confirmed = confirm(
     "क्या आप इस शिक्षक की जानकारी delete करना चाहते हैं?\n\n" +
@@ -1956,7 +1975,9 @@ document.addEventListener("click", async function (event) {
     const result = await response.json();
 
     if (!response.ok) {
-      throw new Error(result.error || "Failed to delete teacher");
+      throw new Error(
+        result.error || result.message || "Failed to delete teacher",
+      );
     }
 
     alert(
@@ -1964,17 +1985,15 @@ document.addEventListener("click", async function (event) {
         "शिक्षक की जानकारी सफलतापूर्वक delete हो गई।",
     );
 
-    /* Reload teacher table */
+    await loadTeachers();
 
-    loadTeachers();
-
-    /* Update dashboard count */
-
-    loadDashboardTeachers();
+    if (typeof loadDashboardTeachers === "function") {
+      await loadDashboardTeachers();
+    }
   } catch (error) {
     console.error("Delete teacher error:", error);
 
-    alert("Teacher delete नहीं हो सका।");
+    alert(error.message || "Teacher delete नहीं हो सका।");
   }
 });
 
@@ -2366,9 +2385,9 @@ async function editEvent(id) {
   }
 }
 
-/* =====================================================
-   DELETE EVENT
-   ===================================================== */
+// =========================================
+// DELETE EVENT
+// =========================================
 
 async function deleteEvent(id) {
   const confirmed = confirm(
@@ -2385,17 +2404,21 @@ async function deleteEvent(id) {
       method: "DELETE",
     });
 
+    const result = await response.json();
+
     if (!response.ok) {
-      throw new Error("Event could not be deleted.");
+      throw new Error(result.message || result.error || "Event delete failed.");
     }
 
-    alert("Event successfully deleted.");
+    alert(
+      "Event successfully deleted.\n" + "कार्यक्रम सफलतापूर्वक delete हो गया।",
+    );
 
     await loadAdminEvents();
   } catch (error) {
     console.error("DELETE EVENT ERROR:", error);
 
-    alert("Event delete नहीं हो सका।");
+    alert(error.message || "Event delete नहीं हो सका।");
   }
 }
 
@@ -2602,6 +2625,10 @@ document.addEventListener("DOMContentLoaded", function () {
 // GALLERY DELETE
 // =====================================================
 
+// =====================================================
+// GALLERY DELETE
+// =====================================================
+
 document.addEventListener("click", async function (event) {
   const deleteButton = event.target.closest(".gallery-delete-btn");
 
@@ -2609,7 +2636,14 @@ document.addEventListener("click", async function (event) {
     return;
   }
 
+  event.preventDefault();
+
   const galleryId = Number(deleteButton.dataset.id);
+
+  if (!galleryId) {
+    alert("Invalid gallery ID.");
+    return;
+  }
 
   const confirmed = confirm(
     "क्या आप इस photo को permanently delete करना चाहते हैं?\n\n" +
@@ -2621,12 +2655,9 @@ document.addEventListener("click", async function (event) {
   }
 
   try {
-    const response = await fetch(
-      `http://localhost:3000/api/gallery/${galleryId}`,
-      {
-        method: "DELETE",
-      },
-    );
+    const response = await fetch(`${GALLERY_API}/${galleryId}`, {
+      method: "DELETE",
+    });
 
     const result = await response.json();
 
@@ -2634,13 +2665,27 @@ document.addEventListener("click", async function (event) {
       throw new Error(result.error || "Gallery photo delete failed.");
     }
 
+    /* SUCCESS */
+
     alert("Photo deleted successfully!\n" + "फोटो सफलतापूर्वक delete हो गई।");
 
-    await loadAdminGallery();
+    /* Keep Gallery module open after delete */
+
+    if (typeof window.showGallery === "function") {
+      window.showGallery();
+    } else {
+      await loadAdminGallery();
+    }
+
+    /* Update Dashboard count */
+
+    if (typeof loadDashboardGallery === "function") {
+      await loadDashboardGallery();
+    }
   } catch (error) {
     console.error("Gallery delete error:", error);
 
-    alert("Photo delete नहीं हो सकी।\n" + "Server/API check करें।");
+    alert(error.message || "Photo delete नहीं हो सकी।");
   }
 });
 
@@ -2712,15 +2757,6 @@ document.addEventListener("DOMContentLoaded", function () {
     cancelGalleryBtn.addEventListener("click", closeGalleryForm);
   }
 });
-/* =====================================================
-   EVENTS NAVIGATION
-  /* =========================================
-   GALLERY CARDS
-========================================= */
-
-// =====================================================
-// INITIAL LOAD
-// =====================================================
 
 loadAdminEvents();
 

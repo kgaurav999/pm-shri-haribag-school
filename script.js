@@ -577,20 +577,27 @@ document.addEventListener("DOMContentLoaded", function () {
   // =========================================
   // PUBLIC GALLERY
   // =========================================
+  let publicGallery = [];
+  let publicGalleryPage = 0;
+
+  const PUBLIC_GALLERY_PER_PAGE = 3;
 
   async function loadPublicGallery() {
     const galleryGrid = document.getElementById("galleryGrid");
-    const galleryNavigation = document.getElementById("galleryNavigation");
+
+    const previousButton = document.getElementById("galleryPrevBtn");
+
+    const nextButton = document.getElementById("galleryNextBtn");
 
     if (!galleryGrid) {
       return;
     }
 
     galleryGrid.innerHTML = `
-    <div class="gallery-placeholder">
-      Gallery लोड हो रही है...
-    </div>
-  `;
+        <div class="gallery-placeholder">
+            Gallery लोड हो रही है...
+        </div>
+    `;
 
     try {
       const response = await fetch("http://localhost:3000/api/gallery");
@@ -603,140 +610,157 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (!Array.isArray(gallery) || gallery.length === 0) {
         galleryGrid.innerHTML = `
-        <div class="gallery-placeholder">
-          अभी कोई फोटो उपलब्ध नहीं है।
-        </div>
-      `;
+                <div class="gallery-placeholder">
+                    अभी कोई फोटो उपलब्ध नहीं है।
+                </div>
+            `;
+
+        if (previousButton) {
+          previousButton.style.display = "none";
+        }
+
+        if (nextButton) {
+          nextButton.style.display = "none";
+        }
 
         return;
       }
 
-      // =========================================
-      // GALLERY SLIDER
-      // =========================================
+      /* Store gallery data */
 
-      let currentPage = 0;
+      publicGallery = gallery;
 
-      const photosPerPage = 3;
+      publicGalleryPage = 0;
 
-      const totalPages = Math.ceil(gallery.length / photosPerPage);
-
-      function renderGallery() {
-        const startIndex = currentPage * photosPerPage;
-
-        const currentPhotos = gallery.slice(
-          startIndex,
-          startIndex + photosPerPage,
-        );
-
-        galleryGrid.innerHTML = currentPhotos
-          .map(function (photo) {
-            const title =
-              language === "en"
-                ? photo.title_en || "Gallery Photo"
-                : photo.title_hi || "विद्यालय फोटो";
-
-            const category =
-              language === "en"
-                ? photo.category_en || ""
-                : photo.category_hi || "";
-
-            return `
-            <div class="gallery-public-card">
-
-              <img
-                src="http://localhost:3000/uploads/${photo.image_file}"
-                alt="${title}"
-              >
-
-              <div class="gallery-public-info">
-
-                <h3>${title}</h3>
-
-                ${category ? `<span>${category}</span>` : ""}
-
-              </div>
-
-            </div>
-          `;
-          })
-          .join("");
-
-        // =========================================
-        // NAVIGATION
-        // =========================================
-
-        if (totalPages > 1) {
-          const navigation = document.createElement("div");
-
-          navigation.className = "gallery-navigation";
-
-          navigation.innerHTML = `
-      <button
-        type="button"
-        class="gallery-nav-btn"
-        id="galleryPrevBtn"
-        ${currentPage === 0 ? "disabled" : ""}
-      >
-        ← Previous
-      </button>
-
-
-      <span class="gallery-page-indicator">
-        ${currentPage + 1} / ${totalPages}
-      </span>
-
-
-      <button
-        type="button"
-        class="gallery-nav-btn"
-        id="galleryNextBtn"
-        ${currentPage === totalPages - 1 ? "disabled" : ""}
-      >
-        Next →
-      </button>
-    `;
-
-          galleryGrid.appendChild(navigation);
-
-          const previousButton = document.getElementById("galleryPrevBtn");
-
-          const nextButton = document.getElementById("galleryNextBtn");
-
-          if (previousButton) {
-            previousButton.addEventListener("click", function () {
-              if (currentPage > 0) {
-                currentPage--;
-
-                renderGallery();
-              }
-            });
-          }
-
-          if (nextButton) {
-            nextButton.addEventListener("click", function () {
-              if (currentPage < totalPages - 1) {
-                currentPage++;
-
-                renderGallery();
-              }
-            });
-          }
-        }
-      }
-
-      renderGallery();
+      renderPublicGallery();
     } catch (error) {
       console.error("PUBLIC GALLERY ERROR:", error);
 
       galleryGrid.innerHTML = `
-      <div class="gallery-placeholder">
-        Gallery load नहीं हो सकी।
-      </div>
-    `;
+            <div class="gallery-placeholder">
+                Gallery load नहीं हो सकी।
+            </div>
+        `;
     }
   }
 
+  /* =========================================
+   RENDER CURRENT GALLERY PAGE
+========================================= */
+
+  function renderPublicGallery() {
+    const galleryGrid = document.getElementById("galleryGrid");
+
+    const previousButton = document.getElementById("galleryPrevBtn");
+
+    const nextButton = document.getElementById("galleryNextBtn");
+
+    if (!galleryGrid) {
+      return;
+    }
+
+    const start = publicGalleryPage * PUBLIC_GALLERY_PER_PAGE;
+
+    const currentPhotos = publicGallery.slice(
+      start,
+      start + PUBLIC_GALLERY_PER_PAGE,
+    );
+
+    galleryGrid.innerHTML = currentPhotos
+      .map(function (photo) {
+        const title =
+          language === "en"
+            ? photo.title_en || "Gallery Photo"
+            : photo.title_hi || "विद्यालय फोटो";
+
+        const category =
+          language === "en" ? photo.category_en || "" : photo.category_hi || "";
+
+        return `
+
+                <div class="gallery-public-card">
+
+                    <img
+                        src="http://localhost:3000/uploads/${photo.image_file}"
+                        alt="${title}"
+                    >
+
+                    <div class="gallery-public-info">
+
+                        <h3>
+                            ${title}
+                        </h3>
+
+                        ${category ? `<span>${category}</span>` : ""}
+
+                    </div>
+
+                </div>
+
+            `;
+      })
+      .join("");
+
+    /* =========================================
+       ARROW VISIBILITY
+    ========================================= */
+
+    const totalPages = Math.ceil(
+      publicGallery.length / PUBLIC_GALLERY_PER_PAGE,
+    );
+
+    if (previousButton) {
+      previousButton.disabled = publicGalleryPage === 0;
+
+      previousButton.style.display = totalPages > 1 ? "flex" : "none";
+    }
+
+    if (nextButton) {
+      nextButton.disabled = publicGalleryPage >= totalPages - 1;
+
+      nextButton.style.display = totalPages > 1 ? "flex" : "none";
+    }
+  }
+
+  /* =========================================
+   PREVIOUS GALLERY PAGE
+========================================= */
+
+  const galleryPrevBtn = document.getElementById("galleryPrevBtn");
+
+  if (galleryPrevBtn) {
+    galleryPrevBtn.addEventListener("click", function () {
+      if (publicGalleryPage <= 0) {
+        return;
+      }
+
+      publicGalleryPage--;
+
+      renderPublicGallery();
+    });
+  }
+
+  /* =========================================
+   NEXT GALLERY PAGE
+========================================= */
+
+  const galleryNextBtn = document.getElementById("galleryNextBtn");
+
+  if (galleryNextBtn) {
+    galleryNextBtn.addEventListener("click", function () {
+      const totalPages = Math.ceil(
+        publicGallery.length / PUBLIC_GALLERY_PER_PAGE,
+      );
+
+      if (publicGalleryPage >= totalPages - 1) {
+        return;
+      }
+
+      publicGalleryPage++;
+
+      renderPublicGallery();
+    });
+  }
   // Load Gallery
   loadPublicGallery();
   // =====================================
