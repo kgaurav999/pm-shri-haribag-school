@@ -29,6 +29,53 @@ const uploadDir = path.join(__dirname, "uploads", "notices");
 // =========================================
 
 const teacherUploadDir = path.join(__dirname, "uploads", "teachers");
+// =========================================
+// GALLERY IMAGE UPLOAD FOLDER
+// =========================================
+
+const galleryUploadDir = path.join(__dirname, "uploads", "gallery");
+
+if (!fs.existsSync(galleryUploadDir)) {
+  fs.mkdirSync(galleryUploadDir, {
+    recursive: true,
+  });
+}
+
+// =========================================
+// GALLERY IMAGE UPLOAD CONFIGURATION
+// =========================================
+
+const galleryStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, galleryUploadDir);
+  },
+
+  filename: function (req, file, cb) {
+    const extension = path.extname(file.originalname).toLowerCase();
+
+    const safeName = `gallery-${Date.now()}${extension}`;
+
+    cb(null, safeName);
+  },
+});
+
+const galleryUpload = multer({
+  storage: galleryStorage,
+
+  limits: {
+    fileSize: 5 * 1024 * 1024,
+  },
+
+  fileFilter: function (req, file, cb) {
+    const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+
+    if (!allowedTypes.includes(file.mimetype)) {
+      return cb(new Error("Only JPG, PNG and WEBP images are allowed."));
+    }
+
+    cb(null, true);
+  },
+});
 
 if (!fs.existsSync(teacherUploadDir)) {
   fs.mkdirSync(teacherUploadDir, {
@@ -629,7 +676,158 @@ app.delete("/api/events/:id", async (req, res) => {
     });
   }
 });
+// ==================================================
+// GALLERY API
+// ==================================================
 
+// ==================================================
+// GALLERY API
+// ==================================================
+// ADD GALLERY IMAGE
+
+app.post("/api/gallery", galleryUpload.single("image"), async (req, res) => {
+  try {
+    const { titleHi, titleEn, categoryHi, categoryEn, displayOrder } = req.body;
+
+    // Image is required
+    if (!req.file) {
+      return res.status(400).json({
+        error: "Gallery image is required.",
+      });
+    }
+
+    const imageFile = `gallery/${req.file.filename}`;
+
+    const result = await pool.query(
+      `
+        INSERT INTO gallery (
+          title_hi,
+          title_en,
+          category_hi,
+          category_en,
+          image_file,
+          display_order
+        )
+        VALUES ($1, $2, $3, $4, $5, $6)
+        RETURNING *
+        `,
+      [
+        titleHi || null,
+        titleEn || null,
+        categoryHi || null,
+        categoryEn || null,
+        imageFile,
+        Number(displayOrder) || 0,
+      ],
+    );
+
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.error("POST gallery error:", error.message);
+
+    // Delete uploaded image if database insert fails
+    if (req.file) {
+      const filePath = path.join(galleryUploadDir, req.file.filename);
+
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      }
+    }
+
+    res.status(500).json({
+      error: "Failed to add gallery image.",
+    });
+  }
+});
+// =========================================
+// DELETE GALLERY IMAGE
+// =========================================
+
+app.delete("/api/gallery/:id", async (req, res) => {
+  try {
+    const galleryId = Number(req.params.id);
+
+    if (!galleryId) {
+      return res.status(400).json({
+        error: "Invalid gallery ID.",
+      });
+    }
+
+    // Get image file before deleting database record
+    const result = await pool.query(
+      `
+      SELECT image_file
+      FROM gallery
+      WHERE id = $1
+      `,
+      [galleryId],
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        error: "Gallery image not found.",
+      });
+    }
+
+    const imageFile = result.rows[0].image_file;
+
+    // Delete database record
+    await pool.query(
+      `
+      DELETE FROM gallery
+      WHERE id = $1
+      `,
+      [galleryId],
+    );
+
+    // Delete actual image file
+    if (imageFile) {
+      const filePath = path.join(galleryUploadDir, path.basename(imageFile));
+
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      }
+    }
+
+    res.json({
+      message: "Gallery image deleted successfully.",
+    });
+  } catch (error) {
+    console.error("DELETE gallery error:", error.message);
+
+    res.status(500).json({
+      error: "Failed to delete gallery image.",
+    });
+  }
+});
+
+// GET ALL GALLERY IMAGES
+
+app.get("/api/gallery", async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT
+        id,
+        title_hi,
+        title_en,
+        category_hi,
+        category_en,
+        image_file,
+        display_order,
+        created_at
+      FROM gallery
+      ORDER BY display_order ASC, id DESC
+    `);
+
+    res.json(result.rows);
+  } catch (error) {
+    console.error("GET gallery error:", error.message);
+
+    res.status(500).json({
+      error: "Failed to load gallery.",
+    });
+  }
+});
 // ==================================================
 // DATABASE CONNECTION TEST
 // ==================================================

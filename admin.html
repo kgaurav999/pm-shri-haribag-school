@@ -55,11 +55,10 @@
                 <span class="nav-icon">♙</span>
                 <span>Teachers & Staff</span>
             </a>
-
-            <a href="#" class="nav-item">
+            <a href="#galleryModule" class="nav-item" id="galleryNavItem">
                 <span class="nav-icon">▧</span>
                 <span>Gallery</span>
-            </a>
+            </a>    
 
             <a href="#" class="nav-item">
                 <span class="nav-icon">★</span>
@@ -1687,6 +1686,128 @@
                     </div>
             
                 </div>
+            
+            </section>
+            
+            <!-- GALLERY MODULE -->
+            <section class="module-section" id="galleryModule">
+            
+                <div class="module-header">
+            
+                    <div>
+                        <h2>Gallery</h2>
+                        <p>Manage school gallery photos</p>
+                    </div>
+            
+                    <button type="button" class="primary-btn" id="addGalleryBtn">
+                        + Add Photo
+                    </button>
+            
+                </div>
+            
+            
+                <!-- ADD GALLERY PHOTO FORM -->
+            
+                <div class="module-card" id="galleryFormCard" style="display: none;">
+            
+                    <div class="form-card-header">
+            
+                        <div>
+                            <h3>Add Gallery Photo</h3>
+                            <p>Upload a new photo to the school gallery.</p>
+                        </div>
+            
+                        <button type="button" class="close-form-btn" id="closeGalleryFormBtn">
+                            ×
+                        </button>
+            
+                    </div>
+            
+            
+                    <form id="galleryForm" enctype="multipart/form-data">
+            
+                        <div class="form-grid">
+            
+                            <div class="form-group">
+                                <label>Photo</label>
+            
+                                <input type="file" id="galleryImage" name="image" accept="image/jpeg,image/png,image/webp" required>
+                            </div>
+            
+            
+                            <div class="form-group">
+                                <label>Title (Hindi)</label>
+            
+                                <input type="text" id="galleryTitleHi" name="titleHi">
+                            </div>
+            
+            
+                            <div class="form-group">
+                                <label>Title (English)</label>
+            
+                                <input type="text" id="galleryTitleEn" name="titleEn">
+                            </div>
+            
+            
+                            <div class="form-group">
+                                <label>Category (Hindi)</label>
+            
+                                <input type="text" id="galleryCategoryHi" name="categoryHi">
+                            </div>
+            
+            
+                            <div class="form-group">
+                                <label>Category (English)</label>
+            
+                                <input type="text" id="galleryCategoryEn" name="categoryEn">
+                            </div>
+            
+            
+                            <div class="form-group">
+                                <label>Display Order</label>
+            
+                                <input type="number" id="galleryDisplayOrder" name="displayOrder" value="0">
+                            </div>
+            
+                        </div>
+            
+            
+                        <div class="form-actions">
+            
+                            <button type="submit" class="primary-btn">
+                                Add Photo
+                            </button>
+            
+                            <button type="button" class="secondary-btn" id="cancelGalleryBtn">
+                                Cancel
+                            </button>
+            
+                        </div>
+            
+                    </form>
+            
+                </div>
+            
+            
+                <!-- GALLERY PHOTO LIST -->
+            
+                <div class="module-card">
+            
+                    <div class="module-card-header">
+                        <div>
+                            <h3>Gallery Photos</h3>
+                            <p>All uploaded school gallery photos</p>
+                        </div>
+                    </div>
+            
+            
+                    <div id="adminGalleryGrid" class="gallery-admin-grid">
+                        <!-- Gallery photos will load here -->
+                    </div>
+            
+                </div>
+            
+            </section>
             
             </section>
 

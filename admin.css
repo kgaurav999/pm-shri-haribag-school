@@ -2253,3 +2253,155 @@ body {
     }
 
 }
+
+
+#adminGalleryGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+    align-items: start;
+}
+
+.gallery-admin-card {
+    width: 100%;
+    max-width: 360px;
+    background: #ffffff;
+    border: 1px solid #dfe6ec;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+.gallery-admin-info {
+    padding: 14px;
+}
+
+.gallery-admin-info h4 {
+    margin: 0 0 5px;
+    font-size: 17px;
+    color: #123b65;
+}
+
+.gallery-admin-info p {
+    margin: 0 0 8px;
+    font-size: 14px;
+    color: #687783;
+}
+
+.gallery-admin-info small {
+    display: inline-block;
+    padding: 4px 9px;
+    border-radius: 15px;
+    background: #eef5fb;
+    color: #0c4778;
+}
+
+.gallery-admin-actions {
+    margin-top: 12px;
+}
+
+@media (max-width: 900px) {
+    #adminGalleryGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .gallery-admin-card {
+        max-width: none;
+    }
+}
+
+@media (max-width: 600px) {
+    #adminGalleryGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================
+   GALLERY MODULE SPACING
+========================================= */
+
+#galleryModule .module-card {
+    margin-bottom: 28px;
+}
+
+#galleryModule #adminGalleryGrid {
+    margin-top: 24px;
+}
+
+/* =========================================
+   GALLERY FORM INNER SPACING
+========================================= */
+
+#galleryFormCard {
+    overflow: hidden;
+}
+
+#galleryFormCard .form-card-header {
+    padding: 20px 24px;
+}
+
+#galleryFormCard form {
+    padding: 22px 24px 24px;
+}
+
+
+/* =========================================
+   GALLERY IMAGE - SHOW FULL ORIGINAL PHOTO
+========================================= */
+
+
+/* =========================================
+   GALLERY PHOTO FIX
+   LANDSCAPE + PORTRAIT
+========================================= */
+
+#adminGalleryGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+    align-items: start;
+}
+
+.gallery-admin-card {
+    align-self: start;
+    height: auto !important;
+}
+
+.gallery-admin-card img {
+    display: block !important;
+    width: 100% !important;
+    height: 220px !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    background: #f4f6f8;
+}
+
+
+/* =========================================
+   GALLERY GRID OUTER SPACING
+========================================= */
+
+#galleryModule #adminGalleryGrid {
+    padding: 0 12px 20px;
+}
+
+#galleryModule .gallery-admin-card {
+    margin: 0;
+}
+
+/* =========================================
+   GALLERY PHOTOS CARD
+========================================= */
+
+#galleryModule>.module-card:last-child {
+    padding: 20px 24px 24px;
+    margin-top: 28px;
+}
+
+#galleryModule>.module-card:last-child .module-card-header {
+    margin-bottom: 20px;
+}

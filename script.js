@@ -574,6 +574,171 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // =========================================
+  // PUBLIC GALLERY
+  // =========================================
+
+  async function loadPublicGallery() {
+    const galleryGrid = document.getElementById("galleryGrid");
+    const galleryNavigation = document.getElementById("galleryNavigation");
+
+    if (!galleryGrid) {
+      return;
+    }
+
+    galleryGrid.innerHTML = `
+    <div class="gallery-placeholder">
+      Gallery लोड हो रही है...
+    </div>
+  `;
+
+    try {
+      const response = await fetch("http://localhost:3000/api/gallery");
+
+      if (!response.ok) {
+        throw new Error("Failed to load gallery");
+      }
+
+      const gallery = await response.json();
+
+      if (!Array.isArray(gallery) || gallery.length === 0) {
+        galleryGrid.innerHTML = `
+        <div class="gallery-placeholder">
+          अभी कोई फोटो उपलब्ध नहीं है।
+        </div>
+      `;
+
+        return;
+      }
+
+      // =========================================
+      // GALLERY SLIDER
+      // =========================================
+
+      let currentPage = 0;
+
+      const photosPerPage = 3;
+
+      const totalPages = Math.ceil(gallery.length / photosPerPage);
+
+      function renderGallery() {
+        const startIndex = currentPage * photosPerPage;
+
+        const currentPhotos = gallery.slice(
+          startIndex,
+          startIndex + photosPerPage,
+        );
+
+        galleryGrid.innerHTML = currentPhotos
+          .map(function (photo) {
+            const title =
+              language === "en"
+                ? photo.title_en || "Gallery Photo"
+                : photo.title_hi || "विद्यालय फोटो";
+
+            const category =
+              language === "en"
+                ? photo.category_en || ""
+                : photo.category_hi || "";
+
+            return `
+            <div class="gallery-public-card">
+
+              <img
+                src="http://localhost:3000/uploads/${photo.image_file}"
+                alt="${title}"
+              >
+
+              <div class="gallery-public-info">
+
+                <h3>${title}</h3>
+
+                ${category ? `<span>${category}</span>` : ""}
+
+              </div>
+
+            </div>
+          `;
+          })
+          .join("");
+
+        // =========================================
+        // NAVIGATION
+        // =========================================
+
+        if (totalPages > 1) {
+          const navigation = document.createElement("div");
+
+          navigation.className = "gallery-navigation";
+
+          navigation.innerHTML = `
+      <button
+        type="button"
+        class="gallery-nav-btn"
+        id="galleryPrevBtn"
+        ${currentPage === 0 ? "disabled" : ""}
+      >
+        ← Previous
+      </button>
+
+
+      <span class="gallery-page-indicator">
+        ${currentPage + 1} / ${totalPages}
+      </span>
+
+
+      <button
+        type="button"
+        class="gallery-nav-btn"
+        id="galleryNextBtn"
+        ${currentPage === totalPages - 1 ? "disabled" : ""}
+      >
+        Next →
+      </button>
+    `;
+
+          galleryGrid.appendChild(navigation);
+
+          const previousButton = document.getElementById("galleryPrevBtn");
+
+          const nextButton = document.getElementById("galleryNextBtn");
+
+          if (previousButton) {
+            previousButton.addEventListener("click", function () {
+              if (currentPage > 0) {
+                currentPage--;
+
+                renderGallery();
+              }
+            });
+          }
+
+          if (nextButton) {
+            nextButton.addEventListener("click", function () {
+              if (currentPage < totalPages - 1) {
+                currentPage++;
+
+                renderGallery();
+              }
+            });
+          }
+        }
+      }
+
+      renderGallery();
+    } catch (error) {
+      console.error("PUBLIC GALLERY ERROR:", error);
+
+      galleryGrid.innerHTML = `
+      <div class="gallery-placeholder">
+        Gallery load नहीं हो सकी।
+      </div>
+    `;
+    }
+  }
+
+  // Load Gallery
+  loadPublicGallery();
   // =====================================
   // INITIAL LANGUAGE
   // =====================================

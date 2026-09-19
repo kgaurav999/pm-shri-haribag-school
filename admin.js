@@ -11,6 +11,180 @@ const EVENTS_API = "http://localhost:3000/api/events";
 
 const NOTICES_API = "http://localhost:3000/api/notices";
 
+const GALLERY_API = "http://localhost:3000/api/gallery";
+
+// =========================================
+// GALLERY
+// =========================================
+
+const galleryForm = document.getElementById("galleryForm");
+const adminGalleryGrid = document.getElementById("adminGalleryGrid");
+
+// =========================================
+// LOAD GALLERY
+// =========================================
+
+async function loadAdminGallery() {
+  if (!adminGalleryGrid) {
+    return;
+  }
+
+  adminGalleryGrid.innerHTML = `
+    <div class="loading">
+      Gallery लोड हो रही है...
+    </div>
+  `;
+
+  try {
+    const response = await fetch(GALLERY_API);
+
+    if (!response.ok) {
+      throw new Error("Failed to load gallery");
+    }
+
+    const gallery = await response.json();
+
+    if (!Array.isArray(gallery) || gallery.length === 0) {
+      adminGalleryGrid.innerHTML = `
+        <div class="empty">
+          अभी कोई photo उपलब्ध नहीं है।
+        </div>
+      `;
+      return;
+    }
+
+    adminGalleryGrid.innerHTML = gallery
+      .map(function (photo) {
+        return `
+          <div class="gallery-admin-card">
+
+            <img
+              src="http://localhost:3000/uploads/${photo.image_file}"
+              alt="${photo.title_en || "Gallery Photo"}"
+            >
+
+            <div class="gallery-admin-info">
+
+              <h4>
+                ${photo.title_hi || ""}
+              </h4>
+
+              <p>
+                ${photo.title_en || ""}
+              </p>
+
+              <small>
+                ${photo.category_hi || photo.category_en || ""}
+              </small>
+
+              <div class="gallery-admin-actions">
+
+                <button
+                  type="button"
+                  class="table-action delete gallery-delete-btn"
+                  data-id="${photo.id}"
+                >
+                  Delete
+                </button>
+
+              </div>
+
+            </div>
+
+                      </div>
+                    `;
+      })
+      .join("");
+  } catch (error) {
+    console.error("ADMIN GALLERY ERROR:", error);
+
+    adminGalleryGrid.innerHTML = `
+                  <div class="empty">
+                    Gallery load नहीं हो सकी।
+                  </div>
+                `;
+  }
+}
+
+// =========================================
+// ADD GALLERY PHOTO
+// =========================================
+
+if (galleryForm) {
+  galleryForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData();
+
+    const imageInput = document.getElementById("galleryImage");
+
+    formData.append("image", imageInput.files[0]);
+
+    formData.append(
+      "titleHi",
+      document.getElementById("galleryTitleHi").value.trim(),
+    );
+
+    formData.append(
+      "titleEn",
+      document.getElementById("galleryTitleEn").value.trim(),
+    );
+
+    formData.append(
+      "categoryHi",
+      document.getElementById("galleryCategoryHi").value.trim(),
+    );
+
+    formData.append(
+      "categoryEn",
+      document.getElementById("galleryCategoryEn").value.trim(),
+    );
+
+    formData.append(
+      "displayOrder",
+      Number(document.getElementById("galleryDisplayOrder").value) || 0,
+    );
+
+    try {
+      const response = await fetch(GALLERY_API, {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Gallery photo upload failed.");
+      }
+
+      alert("Gallery photo successfully added! ✓");
+
+      galleryForm.reset();
+
+      document.getElementById("galleryDisplayOrder").value = 0;
+
+      // Close Gallery Form
+      const galleryFormCard = document.getElementById("galleryFormCard");
+
+      if (galleryFormCard) {
+        galleryFormCard.style.display = "none";
+      }
+
+      // Reload Gallery
+      await loadAdminGallery();
+
+      // Update Dashboard Gallery Count
+      if (typeof loadDashboardGallery === "function") {
+        await loadDashboardGallery();
+      }
+    } catch (error) {
+      console.error("ADD GALLERY ERROR:", error);
+
+      alert(error.message || "Gallery photo upload नहीं हो सकी।");
+    }
+  });
+}
+
 // =========================================
 // EVENT ELEMENTS
 // =========================================
@@ -1164,6 +1338,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const teachersModule = document.getElementById("teachersModule");
 
+  const galleryModule = document.getElementById("galleryModule");
+
   /* =================================================
        HIDE ALL MODULES
        ================================================= */
@@ -1181,7 +1357,9 @@ document.addEventListener("DOMContentLoaded", function () {
       teachersModule.style.display = "none";
     }
   }
-
+  if (galleryModule) {
+    galleryModule.style.display = "none";
+  }
   /* =================================================
        SHOW DASHBOARD
        ================================================= */
@@ -1269,7 +1447,29 @@ document.addEventListener("DOMContentLoaded", function () {
       loadTeachers();
     }
   }
+  // =================================================
+  // SHOW GALLERY
+  // =================================================
 
+  function showGallery() {
+    hideAllModules();
+
+    if (dashboardContent) {
+      dashboardContent
+        .querySelectorAll(":scope > *")
+        .forEach(function (section) {
+          section.style.display = "none";
+        });
+    }
+
+    if (galleryModule) {
+      galleryModule.style.display = "block";
+    }
+
+    if (typeof loadAdminGallery === "function") {
+      loadAdminGallery();
+    }
+  }
   /* =================================================
        NAVIGATION CLICK
        ================================================= */
@@ -1327,7 +1527,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return;
       }
+      /* Gallery */
 
+      if (itemId === "galleryNavItem") {
+        showGallery();
+
+        return;
+      }
       /*
                    Other menu items:
                    अभी उनका module नहीं बना है,
@@ -1402,42 +1608,42 @@ document.addEventListener("DOMContentLoaded", function () {
   teacherForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
-const teacherFormData = new FormData(teacherForm);
+    const teacherFormData = new FormData(teacherForm);
 
-teacherFormData.set(
-  "nameHi",
-  document.getElementById("teacherNameHi").value.trim()
-);
+    teacherFormData.set(
+      "nameHi",
+      document.getElementById("teacherNameHi").value.trim(),
+    );
 
-teacherFormData.set(
-  "nameEn",
-  document.getElementById("teacherNameEn").value.trim()
-);
+    teacherFormData.set(
+      "nameEn",
+      document.getElementById("teacherNameEn").value.trim(),
+    );
 
-teacherFormData.set(
-  "designationHi",
-  document.getElementById("teacherDesignationHi").value.trim()
-);
+    teacherFormData.set(
+      "designationHi",
+      document.getElementById("teacherDesignationHi").value.trim(),
+    );
 
-teacherFormData.set(
-  "designationEn",
-  document.getElementById("teacherDesignationEn").value.trim()
-);
+    teacherFormData.set(
+      "designationEn",
+      document.getElementById("teacherDesignationEn").value.trim(),
+    );
 
-teacherFormData.set(
-  "subjectHi",
-  document.getElementById("teacherSubjectHi").value.trim()
-);
+    teacherFormData.set(
+      "subjectHi",
+      document.getElementById("teacherSubjectHi").value.trim(),
+    );
 
-teacherFormData.set(
-  "subjectEn",
-  document.getElementById("teacherSubjectEn").value.trim()
-);
+    teacherFormData.set(
+      "subjectEn",
+      document.getElementById("teacherSubjectEn").value.trim(),
+    );
 
-teacherFormData.set(
-  "displayOrder",
-  Number(document.getElementById("teacherOrder").value) || 0
-);
+    teacherFormData.set(
+      "displayOrder",
+      Number(document.getElementById("teacherOrder").value) || 0,
+    );
 
     try {
       const url = editingTeacherId
@@ -1449,7 +1655,7 @@ teacherFormData.set(
       const response = await fetch(url, {
         method: method,
 
-       body: teacherFormData,
+        body: teacherFormData,
       });
 
       const result = await response.json();
@@ -1721,8 +1927,7 @@ async function openTeacherEditForm(teacherId) {
    ========================================================= */
 
 document.addEventListener("click", async function (event) {
-  const deleteButton = event.target.closest(".table-action.delete");
-
+  const deleteButton = event.target.closest(".teacher-delete-btn");
   if (!deleteButton) {
     return;
   }
@@ -2393,9 +2598,125 @@ document.addEventListener("DOMContentLoaded", function () {
   loadAdminEvents();
 });
 
+// =====================================================
+// GALLERY DELETE
+// =====================================================
+
+document.addEventListener("click", async function (event) {
+  const deleteButton = event.target.closest(".gallery-delete-btn");
+
+  if (!deleteButton) {
+    return;
+  }
+
+  const galleryId = Number(deleteButton.dataset.id);
+
+  const confirmed = confirm(
+    "क्या आप इस photo को permanently delete करना चाहते हैं?\n\n" +
+      "Are you sure you want to delete this photo?",
+  );
+
+  if (!confirmed) {
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `http://localhost:3000/api/gallery/${galleryId}`,
+      {
+        method: "DELETE",
+      },
+    );
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.error || "Gallery photo delete failed.");
+    }
+
+    alert("Photo deleted successfully!\n" + "फोटो सफलतापूर्वक delete हो गई।");
+
+    await loadAdminGallery();
+  } catch (error) {
+    console.error("Gallery delete error:", error);
+
+    alert("Photo delete नहीं हो सकी।\n" + "Server/API check करें।");
+  }
+});
+
+// =====================================================
+// DASHBOARD - GALLERY COUNT
+// =====================================================
+
+async function loadDashboardGallery() {
+  try {
+    const response = await fetch("http://localhost:3000/api/gallery");
+
+    if (!response.ok) {
+      throw new Error("Failed to load gallery");
+    }
+
+    const gallery = await response.json();
+
+    const galleryCount = document.getElementById("dashboardGalleryCount");
+
+    if (galleryCount) {
+      galleryCount.textContent = gallery.length;
+    }
+  } catch (error) {
+    console.error("Dashboard gallery error:", error);
+  }
+}
+
+// =========================================
+// GALLERY FORM OPEN / CLOSE
+// =========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+  const addGalleryBtn = document.getElementById("addGalleryBtn");
+
+  const galleryFormCard = document.getElementById("galleryFormCard");
+
+  const closeGalleryFormBtn = document.getElementById("closeGalleryFormBtn");
+
+  const cancelGalleryBtn = document.getElementById("cancelGalleryBtn");
+
+  // Open Gallery Form
+  if (addGalleryBtn) {
+    addGalleryBtn.addEventListener("click", function () {
+      if (galleryFormCard) {
+        galleryFormCard.style.display = "block";
+
+        galleryFormCard.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    });
+  }
+
+  // Close Gallery Form
+  function closeGalleryForm() {
+    if (galleryFormCard) {
+      galleryFormCard.style.display = "none";
+    }
+  }
+
+  // Close button (×)
+  if (closeGalleryFormBtn) {
+    closeGalleryFormBtn.addEventListener("click", closeGalleryForm);
+  }
+
+  // Cancel button
+  if (cancelGalleryBtn) {
+    cancelGalleryBtn.addEventListener("click", closeGalleryForm);
+  }
+});
 /* =====================================================
    EVENTS NAVIGATION
-   ===================================================== */
+  /* =========================================
+   GALLERY CARDS
+========================================= */
 
 // =====================================================
 // INITIAL LOAD
@@ -2404,3 +2725,4 @@ document.addEventListener("DOMContentLoaded", function () {
 loadAdminEvents();
 
 loadAdminNotices();
+loadDashboardGallery();
