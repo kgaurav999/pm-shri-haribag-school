@@ -6,12 +6,9 @@
 // =========================================
 // API URLS
 // =========================================
-
-const EVENTS_API = "http://localhost:3000/api/events";
-
-const NOTICES_API = "http://localhost:3000/api/notices";
-
-const GALLERY_API = "http://localhost:3000/api/gallery";
+const EVENTS_API = "http://127.0.0.1:3000/api/events";
+const NOTICES_API = "http://127.0.0.1:3000/api/notices";
+const GALLERY_API = "http://127.0.0.1:3000/api/gallery";
 
 // =========================================
 // GALLERY

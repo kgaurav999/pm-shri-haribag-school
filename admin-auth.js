@@ -61,3 +61,22 @@ if (logoutButton) {
     }
   });
 }
+
+// =========================================
+// INCLUDE ADMIN SESSION IN API REQUESTS
+// =========================================
+
+const originalFetch = window.fetch.bind(window);
+
+window.fetch = function (input, init = {}) {
+  const requestUrl = typeof input === "string" ? input : input.url;
+
+  if (requestUrl.startsWith(API_BASE_URL)) {
+    init = {
+      ...init,
+      credentials: "include",
+    };
+  }
+
+  return originalFetch(input, init);
+};
