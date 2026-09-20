@@ -1,12 +1,19 @@
-require("dotenv").config();
-
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
 const multer = require("multer");
+const session = require("express-session");
+const pgSession = require("connect-pg-simple")(session);
+const helmet = require("helmet");
 
 const pool = require("./db");
+
+const authRoutes = require("./auth/auth.routes");
+const {
+  requireAdmin,
+  requireAdminForWrite,
+} = require("./auth/auth.middleware");
 
 const app = express();
 const PORT = 3000;
@@ -15,9 +22,64 @@ const PORT = 3000;
 // BASIC SETTINGS
 // --------------------------------------------------
 
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  }),
+);
+
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+  }),
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.set("trust proxy", 1);
+
+app.use(
+  session({
+    store: new pgSession({
+      pool: pool,
+      tableName: "user_sessions",
+      createTableIfMissing: true,
+    }),
+
+    secret: process.env.SESSION_SECRET,
+
+    resave: false,
+
+    saveUninitialized: false,
+
+    name: "haribag.sid",
+
+    cookie: {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "lax" : "lax",
+      maxAge: 8 * 60 * 60 * 1000,
+    },
+  }),
+);
+// ==================================================
+// AUTHENTICATION API
+// ==================================================
+
+app.use("/api/auth", authRoutes);
+
+// ==================================================
+// ADMIN WRITE API PROTECTION
+// GET requests remain public.
+// POST / PUT / PATCH / DELETE require admin login.
+// ==================================================
+
+app.use(
+  ["/api/notices", "/api/events", "/api/teachers", "/api/gallery"],
+  requireAdminForWrite,
+);
 
 // --------------------------------------------------
 // UPLOAD FOLDER
