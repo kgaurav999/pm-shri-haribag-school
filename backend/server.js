@@ -22,9 +22,17 @@ const PORT = 3000;
 // BASIC SETTINGS
 // --------------------------------------------------
 
+const allowedOrigins = ["http://127.0.0.1:5500", "http://localhost:5500"];
+
 app.use(
   cors({
-    origin: true,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("CORS origin not allowed."));
+    },
     credentials: true,
   }),
 );
