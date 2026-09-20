@@ -721,7 +721,6 @@ app.put("/api/events/:id", async (req, res) => {
 
 app.delete("/api/events/:id", async (req, res) => {
   try {
-    rs;
     const result = await pool.query(
       `DELETE FROM events
              WHERE id = $1
