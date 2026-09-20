@@ -1112,7 +1112,11 @@ async function loadDashboardNotices() {
 
     /* Latest 5 notices */
 
-    const recentNotices = [...notices].reverse().slice(0, 5);
+    const recentNotices = [...notices]
+      .sort(function (a, b) {
+        return new Date(b.date) - new Date(a.date);
+      })
+      .slice(0, 5);
 
     recentNoticeContainer.innerHTML = recentNotices
       .map((notice) => {
@@ -1226,12 +1230,20 @@ async function loadDashboardEvents() {
 
     /* Latest / upcoming 5 events */
 
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
     const upcomingEvents = [...events]
+      .filter(function (event) {
+        const eventDate = new Date(event.date);
+        eventDate.setHours(0, 0, 0, 0);
+
+        return eventDate >= today;
+      })
       .sort(function (a, b) {
         return new Date(a.date) - new Date(b.date);
       })
-      .slice(0, 5);
-
+      .slice(0, 3);
     upcomingEventContainer.innerHTML = upcomingEvents
       .map((event) => {
         return `
@@ -1477,6 +1489,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* Make Gallery navigation available to Gallery CRUD handlers */
   window.showGallery = showGallery;
+
+  /* =================================================
+     DASHBOARD QUICK ACTIONS
+     ================================================= */
+
+  const quickActions = document.querySelectorAll(".action-card");
+
+  quickActions.forEach(function (card) {
+    card.addEventListener("click", function () {
+      const actionText = card.textContent.trim().toLowerCase();
+
+      if (actionText.includes("add notice")) {
+        showNotices();
+        return;
+      }
+
+      if (actionText.includes("add event")) {
+        showEvents();
+        return;
+      }
+
+      if (actionText.includes("add teacher")) {
+        showTeachers();
+        return;
+      }
+
+      if (actionText.includes("add photo")) {
+        showGallery();
+        return;
+      }
+    });
+  });
 
   /* =================================================
        NAVIGATION CLICK

@@ -554,6 +554,24 @@ app.delete("/api/notices/:id", async (req, res) => {
     });
   }
 });
+// ==================================================
+// DELETE EXPIRED EVENTS
+// ==================================================
+
+async function deleteExpiredEvents() {
+  try {
+    const result = await pool.query(`
+      DELETE FROM events
+      WHERE event_date < CURRENT_DATE
+    `);
+
+    if (result.rowCount > 0) {
+      console.log(`🗑️ Deleted ${result.rowCount} expired event(s).`);
+    }
+  } catch (error) {
+    console.error("Expired events cleanup error:", error.message);
+  }
+}
 
 // ==================================================
 // EVENTS API
@@ -563,10 +581,14 @@ app.delete("/api/notices/:id", async (req, res) => {
 
 app.get("/api/events", async (req, res) => {
   try {
+    // Remove expired events before sending events
+    await deleteExpiredEvents();
+
     const result = await pool.query(
       `SELECT *
-             FROM events
-             ORDER BY event_date ASC, id ASC`,
+       FROM events
+       WHERE event_date >= CURRENT_DATE
+       ORDER BY event_date ASC, id ASC`,
     );
 
     res.json(result.rows.map(formatEvent));
@@ -1196,8 +1218,14 @@ app.use((error, req, res, next) => {
 // START SERVER
 // ==================================================
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 
   console.log("🗄️ PostgreSQL database connected through db.js");
+
+  // Delete expired events when server starts
+  await deleteExpiredEvents();
+
+  // Check every hour for expired events
+  setInterval(deleteExpiredEvents, 60 * 60 * 1000);
 });
